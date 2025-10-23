@@ -1,0 +1,106 @@
+{
+  "equipment_life_expectancy": [
+    {
+      "model": "Waveserver Ai",
+      "type": "Optical Transport System",
+      "vendor": "Ciena",
+      "expected_life_years": 12
+    },
+    {
+      "model": "NCS 540",
+      "type": "Aggregation Router",
+      "vendor": "Cisco",
+      "expected_life_years": 10
+    },
+    {
+      "model": "MX480",
+      "type": "Core Router",
+      "vendor": "Juniper",
+      "expected_life_years": 12
+    },
+    {
+      "model": "FortiGate 1500D",
+      "type": "Firewall",
+      "vendor": "Fortinet",
+      "expected_life_years": 8
+    },
+    {
+      "model": "6500 Packet-Optical",
+      "type": "Optical Transport System",
+      "vendor": "Ciena",
+      "expected_life_years": 12
+    },
+    {
+      "model": "E7-2",
+      "type": "OLT (Optical Line Terminal)",
+      "vendor": "Calix",
+      "expected_life_years": 10
+    },
+    {
+      "model": "7800R3",
+      "type": "Core Switch",
+      "vendor": "Arista",
+      "expected_life_years": 8
+    },
+    {
+      "model": "Total Access 5000",
+      "type": "Access Node",
+      "vendor": "Adtran",
+      "expected_life_years": 9
+    },
+    {
+      "model": "TA 3000",
+      "type": "Access Node",
+      "vendor": "Adtran",
+      "expected_life_years": 7
+    },
+    {
+      "model": "7050X3",
+      "type": "Data Center Switch",
+      "vendor": "Arista",
+      "expected_life_years": 7
+    },
+    {
+      "model": "ASR 9001",
+      "type": "Edge Router",
+      "vendor": "Cisco",
+      "expected_life_years": 12
+    },
+    {
+      "model": "Catalyst 9300",
+      "type": "Access Switch",
+      "vendor": "Cisco",
+      "expected_life_years": 7
+    },
+    {
+      "model": "FortiGate 600F",
+      "type": "Firewall",
+      "vendor": "Fortinet",
+      "expected_life_years": 8
+    },
+    {
+      "model": "EX4300",
+      "type": "Access Switch",
+      "vendor": "Juniper",
+      "expected_life_years": 5
+    },
+    {
+      "model": "QFX5200",
+      "type": "Data Center Switch",
+      "vendor": "Juniper",
+      "expected_life_years": 9
+    },
+    {
+      "model": "AXOS E9-2",
+      "type": "OLT (Optical Line Terminal)",
+      "vendor": "Calix",
+      "expected_life_years": 9
+    },
+    {
+      "model": "7280SR2",
+      "type": "Aggregation Switch",
+      "vendor": "Arista",
+      "expected_life_years": 7
+    }
+  ]
+}

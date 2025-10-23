@@ -1,0 +1,2404 @@
+{
+  "health_metrics": [
+    {
+      "equipment_id": "EQ-10001",
+      "site": "DC-SOUTH2",
+      "status": "Down",
+      "health_score": 67.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 38,
+          "memory_utilization_percent": 52,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.77,
+          "latency_ms": 14.52
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 49,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.83,
+          "latency_ms": 9.72
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.34,
+          "latency_ms": 17.63
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 57,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.45,
+          "latency_ms": 5.5
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 29,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.13,
+          "latency_ms": 1.47
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10002",
+      "site": "DC-SOUTH1",
+      "status": "Operational",
+      "health_score": 36.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 26,
+          "memory_utilization_percent": 67,
+          "temperature_celsius": 67,
+          "packet_loss_percent": 0.04,
+          "latency_ms": 4.32
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 29,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 68,
+          "packet_loss_percent": 0.05,
+          "latency_ms": 15.25
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 25,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 70,
+          "packet_loss_percent": 0.73,
+          "latency_ms": 6.7
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 28,
+          "memory_utilization_percent": 68,
+          "temperature_celsius": 67,
+          "packet_loss_percent": 0.97,
+          "latency_ms": 12.01
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 25,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 70,
+          "packet_loss_percent": 0.27,
+          "latency_ms": 4.57
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10003",
+      "site": "DC-SOUTH2",
+      "status": "Degraded",
+      "health_score": 72.1,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 33,
+          "memory_utilization_percent": 43,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.51,
+          "latency_ms": 9.61
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.7,
+          "latency_ms": 6.54
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 24,
+          "memory_utilization_percent": 49,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.88,
+          "latency_ms": 4.85
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 40,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.76,
+          "latency_ms": 10.49
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 44,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.25,
+          "latency_ms": 5.3
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10004",
+      "site": "DC-CENTRAL3",
+      "status": "Operational",
+      "health_score": 44.1,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.71,
+          "latency_ms": 7.43
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 48,
+          "memory_utilization_percent": 52,
+          "temperature_celsius": 62,
+          "packet_loss_percent": 0.66,
+          "latency_ms": 14.05
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 64,
+          "packet_loss_percent": 0.33,
+          "latency_ms": 8.42
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 40,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.38,
+          "latency_ms": 2.96
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 50,
+          "memory_utilization_percent": 52,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.96,
+          "latency_ms": 17.62
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10005",
+      "site": "DC-CENTRAL2",
+      "status": "Operational",
+      "health_score": 60.2,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 38,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.62,
+          "latency_ms": 0.88
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 33,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.64,
+          "latency_ms": 9.43
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 41,
+          "memory_utilization_percent": 49,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.82,
+          "latency_ms": 6.81
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 39,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.15,
+          "latency_ms": 18.36
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 34,
+          "memory_utilization_percent": 53,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.03,
+          "latency_ms": 10.02
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10006",
+      "site": "DC-EAST3",
+      "status": "Operational",
+      "health_score": 39.2,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 81,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 56,
+          "packet_loss_percent": 0.69,
+          "latency_ms": 18.76
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 75,
+          "memory_utilization_percent": 69,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.63,
+          "latency_ms": 10.52
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 78,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.84,
+          "latency_ms": 17.96
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 79,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.77,
+          "latency_ms": 3.18
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 79,
+          "memory_utilization_percent": 68,
+          "temperature_celsius": 56,
+          "packet_loss_percent": 0.38,
+          "latency_ms": 3.68
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10007",
+      "site": "DC-CENTRAL1",
+      "status": "Operational",
+      "health_score": 61.8,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 49,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.68,
+          "latency_ms": 7.57
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 25,
+          "memory_utilization_percent": 42,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.8,
+          "latency_ms": 8.99
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 43,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.09,
+          "latency_ms": 14.2
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 28,
+          "memory_utilization_percent": 44,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.17,
+          "latency_ms": 14.28
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 20,
+          "memory_utilization_percent": 49,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.84,
+          "latency_ms": 1.66
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10008",
+      "site": "DC-SOUTH3",
+      "status": "Operational",
+      "health_score": 52.4,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 68,
+          "memory_utilization_percent": 69,
+          "temperature_celsius": 48,
+          "packet_loss_percent": 0.89,
+          "latency_ms": 3.03
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 75,
+          "memory_utilization_percent": 73,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.47,
+          "latency_ms": 6.9
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 69,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.6,
+          "latency_ms": 3.06
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 65,
+          "memory_utilization_percent": 76,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.51,
+          "latency_ms": 7.61
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 72,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.5,
+          "latency_ms": 7.15
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10009",
+      "site": "DC-WEST1",
+      "status": "Operational",
+      "health_score": 64.1,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.52,
+          "latency_ms": 13.21
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 61,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.76,
+          "latency_ms": 10.02
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 35,
+          "memory_utilization_percent": 69,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.82,
+          "latency_ms": 10.32
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 28,
+          "memory_utilization_percent": 59,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.98,
+          "latency_ms": 12.81
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 66,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.87,
+          "latency_ms": 6.34
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10010",
+      "site": "DC-EAST3",
+      "status": "Degraded",
+      "health_score": 55.6,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 23,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.8,
+          "latency_ms": 9.1
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 25,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.65,
+          "latency_ms": 9.02
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.25,
+          "latency_ms": 2.61
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 26,
+          "memory_utilization_percent": 56,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.64,
+          "latency_ms": 11.44
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 21,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.87,
+          "latency_ms": 8.3
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10011",
+      "site": "DC-SOUTH1",
+      "status": "Operational",
+      "health_score": 22.599999999999994,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 84,
+          "memory_utilization_percent": 53,
+          "temperature_celsius": 68,
+          "packet_loss_percent": 0.35,
+          "latency_ms": 5.07
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 82,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 65,
+          "packet_loss_percent": 0.75,
+          "latency_ms": 18.4
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 83,
+          "memory_utilization_percent": 58,
+          "temperature_celsius": 64,
+          "packet_loss_percent": 0.04,
+          "latency_ms": 4.91
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 84,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 69,
+          "packet_loss_percent": 0.81,
+          "latency_ms": 18.33
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 85,
+          "memory_utilization_percent": 61,
+          "temperature_celsius": 70,
+          "packet_loss_percent": 0.85,
+          "latency_ms": 0.55
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10012",
+      "site": "DC-WEST2",
+      "status": "Operational",
+      "health_score": 60.2,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 68,
+          "memory_utilization_percent": 82,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.93,
+          "latency_ms": 7.38
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 69,
+          "memory_utilization_percent": 90,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.8,
+          "latency_ms": 12.06
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 69,
+          "memory_utilization_percent": 85,
+          "temperature_celsius": 39,
+          "packet_loss_percent": 0.68,
+          "latency_ms": 10.01
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 70,
+          "memory_utilization_percent": 90,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.66,
+          "latency_ms": 14.59
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 66,
+          "memory_utilization_percent": 83,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.35,
+          "latency_ms": 9.04
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10013",
+      "site": "DC-WEST3",
+      "status": "Degraded",
+      "health_score": 41.6,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 68,
+          "memory_utilization_percent": 24,
+          "temperature_celsius": 64,
+          "packet_loss_percent": 0.3,
+          "latency_ms": 10.68
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 64,
+          "memory_utilization_percent": 22,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.23,
+          "latency_ms": 16.73
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 67,
+          "memory_utilization_percent": 27,
+          "temperature_celsius": 64,
+          "packet_loss_percent": 0.32,
+          "latency_ms": 6.15
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 64,
+          "memory_utilization_percent": 25,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.56,
+          "latency_ms": 8.25
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 21,
+          "temperature_celsius": 62,
+          "packet_loss_percent": 0.96,
+          "latency_ms": 3.31
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10014",
+      "site": "DC-SOUTH3",
+      "status": "Down",
+      "health_score": 43.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 91,
+          "memory_utilization_percent": 42,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.09,
+          "latency_ms": 3.95
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 89,
+          "memory_utilization_percent": 38,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.52,
+          "latency_ms": 14.26
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 91,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.82,
+          "latency_ms": 7.41
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 90,
+          "memory_utilization_percent": 38,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.97,
+          "latency_ms": 6.61
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 89,
+          "memory_utilization_percent": 36,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.56,
+          "latency_ms": 6.78
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10015",
+      "site": "DC-CENTRAL2",
+      "status": "Operational",
+      "health_score": 42.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 66,
+          "memory_utilization_percent": 57,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.55,
+          "latency_ms": 11.2
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 72,
+          "memory_utilization_percent": 64,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.49,
+          "latency_ms": 6.76
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 70,
+          "memory_utilization_percent": 62,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.89,
+          "latency_ms": 19.46
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 66,
+          "memory_utilization_percent": 64,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.85,
+          "latency_ms": 16.36
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 67,
+          "memory_utilization_percent": 65,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.57,
+          "latency_ms": 3.79
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10016",
+      "site": "DC-WEST3",
+      "status": "Operational",
+      "health_score": 63.4,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 49,
+          "memory_utilization_percent": 43,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.77,
+          "latency_ms": 1.45
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 49,
+          "memory_utilization_percent": 38,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.14,
+          "latency_ms": 18.02
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 37,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.33,
+          "latency_ms": 8.63
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 35,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.06,
+          "latency_ms": 14.86
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 55,
+          "memory_utilization_percent": 37,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.55,
+          "latency_ms": 14.85
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10017",
+      "site": "DC-CENTRAL3",
+      "status": "Degraded",
+      "health_score": 77.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 34,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.81,
+          "latency_ms": 7.36
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 36,
+          "memory_utilization_percent": 81,
+          "temperature_celsius": 35,
+          "packet_loss_percent": 0.6,
+          "latency_ms": 15.88
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 31,
+          "memory_utilization_percent": 76,
+          "temperature_celsius": 36,
+          "packet_loss_percent": 0.99,
+          "latency_ms": 8.4
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 32,
+          "memory_utilization_percent": 81,
+          "temperature_celsius": 37,
+          "packet_loss_percent": 0.53,
+          "latency_ms": 3.35
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 37,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 39,
+          "packet_loss_percent": 0.08,
+          "latency_ms": 11.7
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10018",
+      "site": "DC-WEST3",
+      "status": "Degraded",
+      "health_score": 82.5,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 23,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 38,
+          "packet_loss_percent": 0.66,
+          "latency_ms": 1.21
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 20,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.48,
+          "latency_ms": 18.98
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 26,
+          "memory_utilization_percent": 51,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.26,
+          "latency_ms": 13.8
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 21,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.69,
+          "latency_ms": 18.66
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 19,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.14,
+          "latency_ms": 5.44
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10019",
+      "site": "DC-WEST2",
+      "status": "Operational",
+      "health_score": 58.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 59,
+          "memory_utilization_percent": 40,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.77,
+          "latency_ms": 5.96
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 61,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 48,
+          "packet_loss_percent": 0.25,
+          "latency_ms": 11.32
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.26,
+          "latency_ms": 1.83
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 45,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.2,
+          "latency_ms": 15.2
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 61,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.55,
+          "latency_ms": 4.53
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10020",
+      "site": "DC-WEST1",
+      "status": "Operational",
+      "health_score": 52.6,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 90,
+          "memory_utilization_percent": 82,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.5,
+          "latency_ms": 7.78
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 92,
+          "memory_utilization_percent": 85,
+          "temperature_celsius": 42,
+          "packet_loss_percent": 0.13,
+          "latency_ms": 2.48
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 86,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 42,
+          "packet_loss_percent": 0.82,
+          "latency_ms": 10.1
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 91,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.47,
+          "latency_ms": 4.61
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 85,
+          "memory_utilization_percent": 88,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.42,
+          "latency_ms": 2.46
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10021",
+      "site": "DC-WEST3",
+      "status": "Operational",
+      "health_score": 69.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 18,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.79,
+          "latency_ms": 11.24
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 25,
+          "memory_utilization_percent": 52,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.1,
+          "latency_ms": 7.86
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 19,
+          "memory_utilization_percent": 56,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.85,
+          "latency_ms": 16.14
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.27,
+          "latency_ms": 19.64
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 17,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.04,
+          "latency_ms": 18.02
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10022",
+      "site": "DC-SOUTH3",
+      "status": "Operational",
+      "health_score": 52.1,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 62,
+          "memory_utilization_percent": 74,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.9,
+          "latency_ms": 3.3
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 73,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.3,
+          "latency_ms": 10.25
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 68,
+          "memory_utilization_percent": 81,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.51,
+          "latency_ms": 7.33
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 66,
+          "memory_utilization_percent": 81,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.14,
+          "latency_ms": 17.5
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 59,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.33,
+          "latency_ms": 18.22
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10023",
+      "site": "DC-WEST1",
+      "status": "Down",
+      "health_score": 49.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 61,
+          "memory_utilization_percent": 87,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.86,
+          "latency_ms": 13.12
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 55,
+          "memory_utilization_percent": 87,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.96,
+          "latency_ms": 6.59
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 56,
+          "memory_utilization_percent": 90,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.81,
+          "latency_ms": 5.76
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 83,
+          "temperature_celsius": 48,
+          "packet_loss_percent": 0.71,
+          "latency_ms": 2.47
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 52,
+          "memory_utilization_percent": 83,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.06,
+          "latency_ms": 14.28
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10024",
+      "site": "DC-WEST3",
+      "status": "Degraded",
+      "health_score": 65.0,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 31,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.27,
+          "latency_ms": 7.03
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.28,
+          "latency_ms": 17.57
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 26,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 48,
+          "packet_loss_percent": 0.26,
+          "latency_ms": 4.66
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 33,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 52,
+          "packet_loss_percent": 0.03,
+          "latency_ms": 2.12
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 34,
+          "memory_utilization_percent": 42,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.41,
+          "latency_ms": 17.31
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10025",
+      "site": "DC-SOUTH3",
+      "status": "Operational",
+      "health_score": 48.8,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 51,
+          "memory_utilization_percent": 30,
+          "temperature_celsius": 62,
+          "packet_loss_percent": 0.36,
+          "latency_ms": 4.43
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 44,
+          "memory_utilization_percent": 28,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.49,
+          "latency_ms": 2.09
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 50,
+          "memory_utilization_percent": 27,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.57,
+          "latency_ms": 18.34
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 50,
+          "memory_utilization_percent": 27,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.29,
+          "latency_ms": 1.9
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 46,
+          "memory_utilization_percent": 30,
+          "temperature_celsius": 62,
+          "packet_loss_percent": 0.05,
+          "latency_ms": 9.01
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10026",
+      "site": "DC-SOUTH1",
+      "status": "Operational",
+      "health_score": 34.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 87,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.37,
+          "latency_ms": 17.65
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 85,
+          "memory_utilization_percent": 59,
+          "temperature_celsius": 56,
+          "packet_loss_percent": 0.46,
+          "latency_ms": 18.83
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 89,
+          "memory_utilization_percent": 64,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.84,
+          "latency_ms": 4.53
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 87,
+          "memory_utilization_percent": 62,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.4,
+          "latency_ms": 6.2
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 80,
+          "memory_utilization_percent": 59,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.03,
+          "latency_ms": 4.06
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10027",
+      "site": "DC-CENTRAL1",
+      "status": "Operational",
+      "health_score": 53.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 23,
+          "memory_utilization_percent": 71,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.99,
+          "latency_ms": 11.28
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 25,
+          "memory_utilization_percent": 71,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.49,
+          "latency_ms": 18.92
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 27,
+          "memory_utilization_percent": 72,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.78,
+          "latency_ms": 16.8
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 23,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.83,
+          "latency_ms": 14.15
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 20,
+          "memory_utilization_percent": 71,
+          "temperature_celsius": 56,
+          "packet_loss_percent": 0.03,
+          "latency_ms": 7.23
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10028",
+      "site": "DC-EAST2",
+      "status": "Operational",
+      "health_score": 39.8,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 46,
+          "memory_utilization_percent": 24,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.25,
+          "latency_ms": 9.53
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 44,
+          "memory_utilization_percent": 32,
+          "temperature_celsius": 68,
+          "packet_loss_percent": 0.77,
+          "latency_ms": 13.86
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 51,
+          "memory_utilization_percent": 25,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.36,
+          "latency_ms": 7.41
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 49,
+          "memory_utilization_percent": 32,
+          "temperature_celsius": 65,
+          "packet_loss_percent": 0.99,
+          "latency_ms": 9.08
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 42,
+          "memory_utilization_percent": 28,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.21,
+          "latency_ms": 11.35
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10029",
+      "site": "DC-EAST2",
+      "status": "Degraded",
+      "health_score": 67.1,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 92,
+          "memory_utilization_percent": 35,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.89,
+          "latency_ms": 17.03
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 91,
+          "memory_utilization_percent": 35,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.59,
+          "latency_ms": 11.23
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 86,
+          "memory_utilization_percent": 35,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.88,
+          "latency_ms": 0.62
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 91,
+          "memory_utilization_percent": 33,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.27,
+          "latency_ms": 17.27
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 90,
+          "memory_utilization_percent": 35,
+          "temperature_celsius": 41,
+          "packet_loss_percent": 0.65,
+          "latency_ms": 13.51
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10030",
+      "site": "DC-CENTRAL3",
+      "status": "Operational",
+      "health_score": 44.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 63,
+          "memory_utilization_percent": 53,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.64,
+          "latency_ms": 5.19
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.5,
+          "latency_ms": 19.77
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 57,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.71,
+          "latency_ms": 4.58
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 1.0,
+          "latency_ms": 17.73
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 63,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.13,
+          "latency_ms": 7.99
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10031",
+      "site": "DC-EAST3",
+      "status": "Operational",
+      "health_score": 71.2,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 76,
+          "memory_utilization_percent": 42,
+          "temperature_celsius": 34,
+          "packet_loss_percent": 0.54,
+          "latency_ms": 14.62
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 82,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 36,
+          "packet_loss_percent": 0.49,
+          "latency_ms": 18.73
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 83,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.69,
+          "latency_ms": 8.47
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 80,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 38,
+          "packet_loss_percent": 0.43,
+          "latency_ms": 2.94
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 80,
+          "memory_utilization_percent": 40,
+          "temperature_celsius": 36,
+          "packet_loss_percent": 0.38,
+          "latency_ms": 3.37
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10032",
+      "site": "DC-CENTRAL2",
+      "status": "Operational",
+      "health_score": 73.8,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 62,
+          "temperature_celsius": 36,
+          "packet_loss_percent": 0.03,
+          "latency_ms": 10.54
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 55,
+          "memory_utilization_percent": 57,
+          "temperature_celsius": 36,
+          "packet_loss_percent": 0.5,
+          "latency_ms": 19.41
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 57,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 37,
+          "packet_loss_percent": 0.44,
+          "latency_ms": 4.07
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 59,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 38,
+          "packet_loss_percent": 0.42,
+          "latency_ms": 3.46
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 56,
+          "memory_utilization_percent": 63,
+          "temperature_celsius": 39,
+          "packet_loss_percent": 0.68,
+          "latency_ms": 5.42
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10033",
+      "site": "DC-WEST1",
+      "status": "Operational",
+      "health_score": 61.8,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 65,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.14,
+          "latency_ms": 7.91
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 57,
+          "memory_utilization_percent": 55,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.14,
+          "latency_ms": 5.93
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 67,
+          "memory_utilization_percent": 57,
+          "temperature_celsius": 48,
+          "packet_loss_percent": 0.04,
+          "latency_ms": 14.21
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 67,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.91,
+          "latency_ms": 1.37
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 61,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.65,
+          "latency_ms": 16.23
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10034",
+      "site": "DC-EAST1",
+      "status": "Operational",
+      "health_score": 61.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 53,
+          "memory_utilization_percent": 80,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.17,
+          "latency_ms": 14.01
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 57,
+          "memory_utilization_percent": 85,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.26,
+          "latency_ms": 6.99
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 51,
+          "memory_utilization_percent": 76,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.57,
+          "latency_ms": 14.71
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 81,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.11,
+          "latency_ms": 2.41
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 59,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.42,
+          "latency_ms": 7.06
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10035",
+      "site": "DC-CENTRAL1",
+      "status": "Operational",
+      "health_score": 54.4,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 53,
+          "memory_utilization_percent": 56,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.48,
+          "latency_ms": 7.75
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 59,
+          "memory_utilization_percent": 52,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.35,
+          "latency_ms": 5.15
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 54,
+          "memory_utilization_percent": 51,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.97,
+          "latency_ms": 4.28
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 56,
+          "memory_utilization_percent": 50,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.66,
+          "latency_ms": 15.51
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.66,
+          "latency_ms": 1.88
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10036",
+      "site": "DC-SOUTH2",
+      "status": "Degraded",
+      "health_score": 47.5,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 36,
+          "memory_utilization_percent": 36,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.26,
+          "latency_ms": 2.26
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 38,
+          "memory_utilization_percent": 38,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.41,
+          "latency_ms": 10.37
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 39,
+          "memory_utilization_percent": 39,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.03,
+          "latency_ms": 1.66
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 37,
+          "memory_utilization_percent": 37,
+          "temperature_celsius": 62,
+          "packet_loss_percent": 0.42,
+          "latency_ms": 5.17
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 33,
+          "memory_utilization_percent": 37,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.8,
+          "latency_ms": 9.68
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10037",
+      "site": "DC-WEST1",
+      "status": "Operational",
+      "health_score": 33.099999999999994,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 81,
+          "memory_utilization_percent": 57,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.26,
+          "latency_ms": 19.86
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 87,
+          "memory_utilization_percent": 60,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.64,
+          "latency_ms": 6.5
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 89,
+          "memory_utilization_percent": 56,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.98,
+          "latency_ms": 13.31
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 83,
+          "memory_utilization_percent": 62,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.17,
+          "latency_ms": 4.08
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 80,
+          "memory_utilization_percent": 54,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.31,
+          "latency_ms": 0.8
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10038",
+      "site": "DC-EAST3",
+      "status": "Operational",
+      "health_score": 57.5,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 50,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 55,
+          "packet_loss_percent": 0.78,
+          "latency_ms": 15.77
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 46,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.05,
+          "latency_ms": 10.94
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 43,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.2,
+          "latency_ms": 12.06
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 40,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.77,
+          "latency_ms": 11.19
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 47,
+          "memory_utilization_percent": 43,
+          "temperature_celsius": 51,
+          "packet_loss_percent": 0.17,
+          "latency_ms": 18.01
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10039",
+      "site": "DC-SOUTH2",
+      "status": "Degraded",
+      "health_score": 32.599999999999994,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 83,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.98,
+          "latency_ms": 19.75
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 82,
+          "memory_utilization_percent": 44,
+          "temperature_celsius": 63,
+          "packet_loss_percent": 0.78,
+          "latency_ms": 1.76
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 86,
+          "memory_utilization_percent": 45,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.53,
+          "latency_ms": 1.57
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 76,
+          "memory_utilization_percent": 38,
+          "temperature_celsius": 65,
+          "packet_loss_percent": 0.75,
+          "latency_ms": 18.8
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 76,
+          "memory_utilization_percent": 47,
+          "temperature_celsius": 65,
+          "packet_loss_percent": 0.36,
+          "latency_ms": 9.24
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10040",
+      "site": "DC-WEST1",
+      "status": "Operational",
+      "health_score": 41.6,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.53,
+          "latency_ms": 3.37
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 44,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.56,
+          "latency_ms": 17.25
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 48,
+          "temperature_celsius": 63,
+          "packet_loss_percent": 0.13,
+          "latency_ms": 11.54
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 61,
+          "memory_utilization_percent": 39,
+          "temperature_celsius": 65,
+          "packet_loss_percent": 0.4,
+          "latency_ms": 2.13
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 57,
+          "memory_utilization_percent": 38,
+          "temperature_celsius": 60,
+          "packet_loss_percent": 0.78,
+          "latency_ms": 7.0
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10041",
+      "site": "DC-SOUTH3",
+      "status": "Operational",
+      "health_score": 70.0,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 19,
+          "memory_utilization_percent": 67,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.35,
+          "latency_ms": 18.04
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 24,
+          "memory_utilization_percent": 74,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.3,
+          "latency_ms": 14.46
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 26,
+          "memory_utilization_percent": 64,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.36,
+          "latency_ms": 12.5
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 24,
+          "memory_utilization_percent": 67,
+          "temperature_celsius": 46,
+          "packet_loss_percent": 0.41,
+          "latency_ms": 15.42
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 28,
+          "memory_utilization_percent": 73,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.48,
+          "latency_ms": 3.6
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10042",
+      "site": "DC-SOUTH2",
+      "status": "Operational",
+      "health_score": 42.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 40,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 65,
+          "packet_loss_percent": 0.88,
+          "latency_ms": 10.66
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 42,
+          "memory_utilization_percent": 39,
+          "temperature_celsius": 63,
+          "packet_loss_percent": 0.0,
+          "latency_ms": 16.99
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 33,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 67,
+          "packet_loss_percent": 0.93,
+          "latency_ms": 6.9
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 37,
+          "memory_utilization_percent": 36,
+          "temperature_celsius": 66,
+          "packet_loss_percent": 0.96,
+          "latency_ms": 12.42
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 35,
+          "memory_utilization_percent": 33,
+          "temperature_celsius": 67,
+          "packet_loss_percent": 0.11,
+          "latency_ms": 16.34
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10043",
+      "site": "DC-WEST3",
+      "status": "Down",
+      "health_score": 57.3,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 65,
+          "memory_utilization_percent": 51,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.92,
+          "latency_ms": 11.67
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 75,
+          "memory_utilization_percent": 60,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.46,
+          "latency_ms": 6.71
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 72,
+          "memory_utilization_percent": 51,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.68,
+          "latency_ms": 7.3
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 70,
+          "memory_utilization_percent": 52,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.23,
+          "latency_ms": 9.16
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 70,
+          "memory_utilization_percent": 53,
+          "temperature_celsius": 49,
+          "packet_loss_percent": 0.11,
+          "latency_ms": 13.19
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10044",
+      "site": "DC-CENTRAL1",
+      "status": "Degraded",
+      "health_score": 60.8,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 54,
+          "memory_utilization_percent": 62,
+          "temperature_celsius": 47,
+          "packet_loss_percent": 0.55,
+          "latency_ms": 16.77
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 59,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.76,
+          "latency_ms": 13.49
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 54,
+          "memory_utilization_percent": 58,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.3,
+          "latency_ms": 6.61
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 52,
+          "memory_utilization_percent": 64,
+          "temperature_celsius": 48,
+          "packet_loss_percent": 0.38,
+          "latency_ms": 0.8
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 59,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.15,
+          "latency_ms": 6.12
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10045",
+      "site": "DC-EAST1",
+      "status": "Operational",
+      "health_score": 60.9,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 80,
+          "memory_utilization_percent": 44,
+          "temperature_celsius": 41,
+          "packet_loss_percent": 0.51,
+          "latency_ms": 12.93
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 83,
+          "memory_utilization_percent": 42,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.21,
+          "latency_ms": 15.67
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 76,
+          "memory_utilization_percent": 39,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.59,
+          "latency_ms": 17.44
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 77,
+          "memory_utilization_percent": 41,
+          "temperature_celsius": 45,
+          "packet_loss_percent": 0.23,
+          "latency_ms": 5.88
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 84,
+          "memory_utilization_percent": 46,
+          "temperature_celsius": 44,
+          "packet_loss_percent": 0.05,
+          "latency_ms": 6.12
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10046",
+      "site": "DC-SOUTH3",
+      "status": "Operational",
+      "health_score": 48.2,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 51,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.95,
+          "latency_ms": 3.36
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 52,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 54,
+          "packet_loss_percent": 0.74,
+          "latency_ms": 15.19
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 52,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.46,
+          "latency_ms": 6.22
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 48,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 50,
+          "packet_loss_percent": 0.46,
+          "latency_ms": 14.95
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 53,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 53,
+          "packet_loss_percent": 0.38,
+          "latency_ms": 16.68
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10047",
+      "site": "DC-EAST1",
+      "status": "Operational",
+      "health_score": 66.4,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 57,
+          "memory_utilization_percent": 77,
+          "temperature_celsius": 38,
+          "packet_loss_percent": 0.09,
+          "latency_ms": 16.48
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 74,
+          "temperature_celsius": 43,
+          "packet_loss_percent": 0.48,
+          "latency_ms": 7.48
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 61,
+          "memory_utilization_percent": 72,
+          "temperature_celsius": 40,
+          "packet_loss_percent": 0.63,
+          "latency_ms": 11.8
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 58,
+          "memory_utilization_percent": 74,
+          "temperature_celsius": 39,
+          "packet_loss_percent": 0.84,
+          "latency_ms": 15.66
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 65,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 39,
+          "packet_loss_percent": 0.71,
+          "latency_ms": 12.41
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10048",
+      "site": "DC-EAST2",
+      "status": "Operational",
+      "health_score": 69.0,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 78,
+          "memory_utilization_percent": 84,
+          "temperature_celsius": 36,
+          "packet_loss_percent": 0.43,
+          "latency_ms": 2.26
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 77,
+          "memory_utilization_percent": 80,
+          "temperature_celsius": 37,
+          "packet_loss_percent": 0.89,
+          "latency_ms": 6.71
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 68,
+          "memory_utilization_percent": 88,
+          "temperature_celsius": 38,
+          "packet_loss_percent": 0.0,
+          "latency_ms": 15.91
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 78,
+          "memory_utilization_percent": 85,
+          "temperature_celsius": 34,
+          "packet_loss_percent": 0.23,
+          "latency_ms": 17.02
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 76,
+          "memory_utilization_percent": 84,
+          "temperature_celsius": 38,
+          "packet_loss_percent": 0.28,
+          "latency_ms": 9.64
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10049",
+      "site": "DC-EAST1",
+      "status": "Operational",
+      "health_score": 34.7,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 71,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 57,
+          "packet_loss_percent": 0.06,
+          "latency_ms": 10.24
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 76,
+          "memory_utilization_percent": 76,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.29,
+          "latency_ms": 13.6
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 72,
+          "memory_utilization_percent": 78,
+          "temperature_celsius": 56,
+          "packet_loss_percent": 0.32,
+          "latency_ms": 6.07
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 72,
+          "memory_utilization_percent": 69,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.58,
+          "latency_ms": 16.35
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 71,
+          "memory_utilization_percent": 74,
+          "temperature_celsius": 58,
+          "packet_loss_percent": 0.19,
+          "latency_ms": 3.51
+        }
+      ]
+    },
+    {
+      "equipment_id": "EQ-10050",
+      "site": "DC-CENTRAL2",
+      "status": "Operational",
+      "health_score": 35.2,
+      "recent_readings": [
+        {
+          "timestamp": "2025-10-23T17:30:21Z",
+          "cpu_utilization_percent": 56,
+          "memory_utilization_percent": 79,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.33,
+          "latency_ms": 19.31
+        },
+        {
+          "timestamp": "2025-10-22T17:30:21Z",
+          "cpu_utilization_percent": 55,
+          "memory_utilization_percent": 78,
+          "temperature_celsius": 61,
+          "packet_loss_percent": 0.55,
+          "latency_ms": 12.52
+        },
+        {
+          "timestamp": "2025-10-21T17:30:21Z",
+          "cpu_utilization_percent": 53,
+          "memory_utilization_percent": 71,
+          "temperature_celsius": 64,
+          "packet_loss_percent": 0.54,
+          "latency_ms": 14.57
+        },
+        {
+          "timestamp": "2025-10-20T17:30:21Z",
+          "cpu_utilization_percent": 55,
+          "memory_utilization_percent": 70,
+          "temperature_celsius": 59,
+          "packet_loss_percent": 0.34,
+          "latency_ms": 4.87
+        },
+        {
+          "timestamp": "2025-10-19T17:30:21Z",
+          "cpu_utilization_percent": 60,
+          "memory_utilization_percent": 78,
+          "temperature_celsius": 62,
+          "packet_loss_percent": 0.05,
+          "latency_ms": 15.31
+        }
+      ]
+    }
+  ]
+}
