@@ -93,7 +93,7 @@ LLM_KEY=sk-proj-...
 ```
 ### Start the worker
 ```bash
-poetry run python run_worker.py
+poetry run python src/run_worker.py
 ```
 
 ## 2. Running
@@ -110,16 +110,31 @@ This agent is:
 **Note:** The system updates `infrastructure_inventory.json`, `health_metrics.json`, `equipment_life_expectancy.json` as it performs maintenance operations. You can monitor the changes to see the impact of maintenance actions. Reset the data between runs by discarding changes and refreshing from the git repository.
 
 #### Terminal
-Launch the infrastructure maintenance agent from the terminal:
+Launch the infrastructure monitoring agent from the terminal:
 ```bash
-poetry run python run_maintenance_agent.py 
+poetry run python run_monitoring_agent.py 
 ```
 Enable auto-approval for routine maintenance operations:
 ```bash
-poetry run python run_maintenance_agent.py --auto-approve
+poetry run python run_monitoring_agent.py --auto-approve
 ```
 
-Here's what the infrastructure maintenance output looks like:
+For continuous proactive monitoring that runs indefinitely:
+```bash
+poetry run python run_monitoring_agent_proactive.py --auto-approve
+```
+
+Query the status of a running workflow:
+```bash
+poetry run python query_monitoring_agent.py --workflow-id "infra-monitoring-agent-for-Admin.User-UUID"
+```
+
+Approve planned repairs using the included script:
+```bash
+poetry run python approve_monitoring_agent.py --workflow-id "infra-monitoring-agent-for-Admin.User-UUID"
+```
+
+Here's what the infrastructure monitoring output looks like:
 ```none
 #TODO put output here
 ```

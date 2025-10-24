@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 import os
 
-import activities
-from workflows import InfraMonAgentWorkflow, InfraMonAgentWorkflowProactive
+from src import activities
+from src.workflows import InfraMonAgentWorkflow, InfraMonAgentWorkflowProactive
 from shared.config import TEMPORAL_TASK_QUEUE, get_temporal_client
 
 

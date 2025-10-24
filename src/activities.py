@@ -58,7 +58,9 @@ async def detect_some_stuff(input: dict) -> dict:
     # Load the infrastructure data (from JSON files)
     infrastructure_data = load_infrastructure_data()
     health_metrics_data = load_health_metrics_data()
-    
+    # todo load equipment life expectancy
+    equipment_life_expectancy_data = load_equipment_life_expectancy_data()
+
     activity.heartbeat("Infrastructure data loaded, detection in progress...")
     
     # Use the LLM to detect issues in the infrastructure
@@ -72,12 +74,13 @@ async def detect_some_stuff(input: dict) -> dict:
     
     # This is a context instruction for the LLM to understand its task
     context_instructions = "You are a helpful assistant that detects problems in network infrastructure. " \
-    "Your task is to analyze the provided infrastructure components and health metrics to detect issues or anomalies. " \
+    "Your task is to analyze the provided infrastructure components, health metrics, and equipment life expectancy to detect issues or anomalies. " \
     "You will receive infrastructure inventory data with device status, alerts, temperatures, CPU/memory utilization, and uptime. " \
     "You will also receive health metrics with performance data like packet loss, latency, and recent readings. " \
+    "You will also receive equipment life expectancy data to help assess if devices are nearing end of life. " \
     "Look for common problems such as: devices with 'Down' status, high temperature (>70C), high CPU utilization (>80%), " \
     "high memory utilization (>85%), packet loss >1%, latency >20ms, expired maintenance contracts, " \
-    "devices with critical alerts, or devices that haven't had maintenance in over 2 years. " \
+    "devices with critical alerts, devices that haven't had maintenance in over 2 years, or devices approaching their expected life span. " \
     "Ensure your response is valid JSON and does not contain any markdown formatting. " \
     "The response should be a JSON object with a 'confidence_score' of how " \
     "sure you are that there are infrastructure issues requiring attention (0.0 to 1.0). " \
@@ -86,7 +89,9 @@ async def detect_some_stuff(input: dict) -> dict:
     "The infrastructure inventory to analyze is as follows: " \
     + json.dumps(infrastructure_data, indent=2) \
     + "\nThe health metrics data is as follows: " \
-    + json.dumps(health_metrics_data, indent=2)
+    + json.dumps(health_metrics_data, indent=2) \
+    + "\nThe equipment life expectancy data is as follows: " \
+    + json.dumps(equipment_life_expectancy_data, indent=2)
     
     activity.logger.debug(f"Context instructions for LLM: {context_instructions}")
 
@@ -169,6 +174,21 @@ def load_health_metrics_data() -> dict:
         raise ApplicationError(f"Error parsing health metrics JSON: {e}")
 
 
+def load_equipment_life_expectancy_data() -> dict:
+    """Load equipment life expectancy data from JSON file."""
+    try:
+        with open("./data/equipment_life_expectancy.json", "r") as file:
+            data = json.load(file)
+            return data.get("equipment_life_expectancy", [])
+    except FileNotFoundError:
+        activity.logger.warning("Equipment life expectancy file not found, returning empty data")
+        return []
+    except json.JSONDecodeError as e:
+        activity.logger.error(f"Error parsing equipment life expectancy JSON: {e}")
+        raise ApplicationError(f"Error parsing equipment life expectancy JSON: {e}")
+
+
+
 def sanitize_json_response(response_content: str) -> str:
     """
     Sanitizes the response content to ensure it's valid JSON.
@@ -212,6 +232,7 @@ async def analyze_some_stuff(input: dict) -> dict:
     # Load the infrastructure data 
     infrastructure_data = load_infrastructure_data()
     health_metrics_data = load_health_metrics_data()
+    equipment_life_expectancy_data = load_equipment_life_expectancy_data()
 
     activity.heartbeat("Infrastructure data loaded, analysis in progress...")
     
@@ -225,12 +246,12 @@ async def analyze_some_stuff(input: dict) -> dict:
 
     # Define the messages for the LLM completion
     context_instructions = "You are a helpful assistant that detects and analyzes problems in network infrastructure. " \
-    "Your task is to analyze the provided infrastructure components and health metrics to identify specific issues and their severity. " \
-    "You will receive infrastructure inventory data and health metrics data in JSON format. " \
+    "Your task is to analyze the provided infrastructure components, health metrics, and equipment life expectancy to identify specific issues and their severity. " \
+    "You will receive infrastructure inventory data, health metrics data, and equipment life expectancy data in JSON format. " \
     "Look for specific problems and categorize them by severity: critical, warning, or info. " \
-    "Critical issues include: devices down, high packet loss (>2%), extreme temperatures (>75C), expired contracts. " \
-    "Warning issues include: high utilization (CPU >80%, Memory >85%), moderate packet loss (0.5-2%), high latency (>15ms). " \
-    "Info issues include: devices needing routine maintenance, moderate utilization levels. " \
+    "Critical issues include: devices down, high packet loss (>2%), extreme temperatures (>75C), expired contracts, devices past expected life. " \
+    "Warning issues include: high utilization (CPU >80%, Memory >85%), moderate packet loss (0.5-2%), high latency (>15ms), devices approaching expected life (>80% of life span). " \
+    "Info issues include: devices needing routine maintenance, moderate utilization levels, devices approaching mid-life. " \
     "Ensure your response is valid JSON and does not contain any markdown formatting. " \
     "The response should be a JSON object with a key 'issues' that contains a list of detected issues, " \
     "each with an 'equipment_id', 'issue' description, 'severity' (critical/warning/info), " \
@@ -241,7 +262,9 @@ async def analyze_some_stuff(input: dict) -> dict:
     "The infrastructure inventory to analyze is as follows: " \
     + json.dumps(infrastructure_data, indent=2) \
     + "\nThe health metrics data is as follows: " \
-    + json.dumps(health_metrics_data, indent=2)
+    + json.dumps(health_metrics_data, indent=2) \
+    + "\nThe equipment life expectancy data is as follows: " \
+    + json.dumps(equipment_life_expectancy_data, indent=2)
     
     messages = [
         {
@@ -321,6 +344,7 @@ async def plan_to_repair_some_stuff(input: dict) -> dict:
     # Load the infrastructure data 
     infrastructure_data = load_infrastructure_data()
     health_metrics_data = load_health_metrics_data()
+    equipment_life_expectancy_data = load_equipment_life_expectancy_data()
 
     activity.heartbeat("Infrastructure data loaded, maintenance planning in progress...")
     
@@ -357,6 +381,8 @@ async def plan_to_repair_some_stuff(input: dict) -> dict:
     + json.dumps(tool_list, indent=2)
     context_instructions = context_instructions + "\nThe health metrics data is as follows: " \
     + json.dumps(health_metrics_data, indent=2)
+    context_instructions = context_instructions + "\nThe equipment life expectancy data is as follows: " \
+    + json.dumps(equipment_life_expectancy_data, indent=2)
     activity.logger.debug(f"Context instructions for LLM: {context_instructions}")
 
     messages = [
@@ -396,6 +422,59 @@ async def plan_to_repair_some_stuff(input: dict) -> dict:
         proposed_tools_for_all_equipment = parsed_response.get("proposed_tools", {})
         additional_repair_notes = parsed_response.get("additional_notes", "")
         overall_confidence_score = parsed_response.get("overall_confidence_score", 0.0)
+        
+        # Generate infrastructure maintenance planning report
+        report_contents: str
+        if not proposed_tools_for_all_equipment:
+            activity.logger.info("No proposed tools found for infrastructure maintenance.")
+            report_contents = "# No proposed tools found for infrastructure maintenance."
+        else:
+            activity.logger.debug(f"Proposed tools for all equipment: {proposed_tools_for_all_equipment}")
+            activity.logger.info(f"Number of equipment with proposed tools: {len(proposed_tools_for_all_equipment)}")
+            
+            report_contents = "# Proposed Infrastructure Maintenance:\n"
+            report_contents += f"- Overall confidence score for proposed tools: {overall_confidence_score}\n"
+            report_contents += f"- Additional notes: {additional_repair_notes}\n"
+            report_contents += f"- Number of equipment with proposed tools: {len(proposed_tools_for_all_equipment)}\n"
+            report_contents += "## Proposed Equipment and Tools:\n"
+            for equipment_id, equipment_tools in proposed_tools_for_all_equipment.items():
+                if not isinstance(equipment_tools, list):
+                    activity.logger.error(f"Expected a list for equipment {equipment_tools}, got {type(equipment_tools)}")
+                    activity.logger.error(f"Equipment {equipment_id} proposed tools: {equipment_tools}")
+                    raise ApplicationError(f"Expected a list for equipment {equipment_tools}, got {type(equipment_tools)}")
+                report_contents += f"### Equipment ID: {equipment_id}\n"
+                if not equipment_tools:
+                    report_contents += "- No proposed tools for this equipment.\n"
+                    continue
+                for tool in equipment_tools:
+                    confidence_score = tool.get("confidence_score", 0.0)
+                    additional_notes = tool.get("additional_notes", "N/A")
+                    tool_name = tool.get("tool_name", "Unknown Tool Name")
+                    tool_arguments = tool.get("tool_arguments", {})
+                    if not tool_name or tool_name == "Unknown Tool Name" or not tool_arguments:
+                        activity.logger.error(f"Tool name or arguments missing for tool {tool_name} for equipment {equipment_id}: {tool}.")
+                        raise ApplicationError(f"Tool name or arguments missing for tool {tool_name} for equipment {equipment_id}.")
+                    if not isinstance(tool_arguments, dict):
+                        activity.logger.error(f"Expected a dictionary for tool arguments for tool {tool_name} for equipment {equipment_id}, got {type(tool_arguments)} for {tool}")
+                        raise ApplicationError(f"Expected a dictionary for tool arguments for tool {tool_name} for equipment {equipment_id}, got {type(tool_arguments)}")
+                    activity.logger.debug(f"Tool arguments for tool {tool_name} for equipment {equipment_id}: {tool_arguments}")
+                    report_contents += f"### {tool_name}"
+                    report_contents += f"\n- Confidence Score: {confidence_score}\n- Additional Notes: {additional_notes}\n"
+                    report_contents += f"- Tool Arguments: {json.dumps(tool_arguments, indent=2)}\n"
+        
+        activity.logger.info(f"...Planning results valid, generating reports.")
+
+        # Create reports directory if it doesn't exist
+        os.makedirs("./reports", exist_ok=True)
+
+        # Write the report to a PDF file with markdown-pdf
+        planning_report_pdf = MarkdownPdf(toc_level=2, optimize=True)
+        planning_report_pdf.add_section(Section(report_contents))
+        planning_report_pdf.meta["title"] = "Infrastructure Maintenance Planning Report"
+        planning_report_pdf.meta["author"] = "Infrastructure Monitoring Agent"
+        planning_report_pdf.save(PLANNING_REPORT_NAME + ".pdf")
+
+        activity.logger.info(f"Planning report saved to {PLANNING_REPORT_NAME + '.pdf'}")
         
         return parsed_response
     

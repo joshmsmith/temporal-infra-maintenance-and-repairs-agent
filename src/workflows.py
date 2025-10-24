@@ -8,7 +8,7 @@ from temporalio.common import RetryPolicy
 from temporalio.exceptions import ActivityError, ApplicationError
 
 with workflow.unsafe.imports_passed_through():
-    from activities import analyze, detect, plan_repair, notify, execute_repairs, report
+    from src.activities import analyze, detect, plan_repair, notify, execute_repairs, report
 
 ITERATIONS_BEFORE_CONTINUE_AS_NEW = 10  # Number of iterations before exiting the workflow
 
