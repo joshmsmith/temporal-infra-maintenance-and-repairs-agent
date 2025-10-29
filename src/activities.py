@@ -58,7 +58,6 @@ async def detect_some_stuff(input: dict) -> dict:
     # Load the infrastructure data (from JSON files)
     infrastructure_data = load_infrastructure_data()
     health_metrics_data = load_health_metrics_data()
-    # todo load equipment life expectancy
     equipment_life_expectancy_data = load_equipment_life_expectancy_data()
 
     activity.heartbeat("Infrastructure data loaded, detection in progress...")
