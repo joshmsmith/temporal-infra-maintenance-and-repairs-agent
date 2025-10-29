@@ -16,6 +16,10 @@ fastmcp = "^2.8.0"
 openai = "^1.86.0"  # Added OpenAI client library
 litellm = "^1.72.4"
 markdown-pdf = "^1.0.1"
+streamlit = "^1.50.0"
+pandas = "^2.3.3"
+plotly = "^6.3.1"
+python-dateutil = "^2.9.0.post0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.2"
