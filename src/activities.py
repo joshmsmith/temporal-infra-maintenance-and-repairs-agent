@@ -540,6 +540,7 @@ async def repair_some_stuff(input: dict) -> dict:
     problems_repaired: int = 0
     problems_skipped: int = 0
     
+    #todo actually call some tools based on proposed tools
     proposed_tools_for_all_equipment = input.get("planning_result", {}).get("proposed_tools", [])
     if not proposed_tools_for_all_equipment:
         activity.logger.info("No proposed maintenance tools found.")
@@ -563,5 +564,6 @@ async def report_some_stuff(input: dict) -> dict:
     
     return {
         "report_summary": "Infrastructure maintenance completed successfully",
-        "additional_notes": "All critical issues have been addressed through scheduled maintenance"
+        "additional_notes": "All critical issues have been addressed through scheduled maintenance",
+        "report_result": "Report generated successfully."
     }

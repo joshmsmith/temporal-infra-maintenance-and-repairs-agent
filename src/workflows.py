@@ -73,7 +73,7 @@ class InfraMonAgentWorkflow:
         # Create the report with the report agent
         report_summary = await self.generate_report()
 
-        return f"Infra monitoring workflow completed with status: {self.status}. Report Summary: {report_summary}"
+        return f"Status: {self.status}. Report Summary: {report_summary}"
 
 
     # workflow helper functions
@@ -188,7 +188,7 @@ class InfraMonAgentWorkflow:
         )
         self.set_workflow_status("REPAIR-COMPLETED")
         workflow.logger.debug(f"Report result: {self.context["report_result"]}")   
-        report_summary = self.context["report_result"].get("repairs_summary", "No summary available")
+        report_summary = self.context["report_result"].get("report_summary", "No summary available")
         return report_summary
 
     @workflow.signal
@@ -259,8 +259,6 @@ class InfraMonAgentWorkflow:
     
     @workflow.query
     async def GetRepairPlanningResult(self) -> dict:
-        if "planning_result" not in self.context:
-            raise ApplicationError("Planning result is not available yet.")
         return self.context["planning_result"]
 
     @workflow.query
@@ -368,7 +366,7 @@ class InfraMonAgentWorkflowProactive(InfraMonAgentWorkflow):
             
         if self.exit_requested:
             workflow.logger.info("Exit requested. Ending workflow.")
-            return "Infra monitoring workflow exited as requested."
+            return "Exited as requested."
         
         if self.continue_as_new_requested or self.iteration_count >= ITERATIONS_BEFORE_CONTINUE_AS_NEW:
             workflow.logger.info("Continuing as new-")
@@ -377,7 +375,7 @@ class InfraMonAgentWorkflowProactive(InfraMonAgentWorkflow):
                 inputs,
             )
             await workflow.wait_condition(lambda: workflow.all_handlers_finished())
-        return "Infra monitoring workflow continued as new with status: WAITING-FOR-NEXT-CYCLE."
+        return "Continued as new with status: WAITING-FOR-NEXT-CYCLE."
 
 
     @workflow.signal
