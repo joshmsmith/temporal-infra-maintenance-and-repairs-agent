@@ -644,6 +644,24 @@ def restart_device_tool(inputs: dict) -> dict:
     """Simulates restarting a network device."""
     equipment_id = inputs.get("equipment_id")
 
+    # Update infrastructure_inventory.json to set status to 'Up' and reset uptime days to 0.
+    # Maybe also remove alerts?
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device["status"] = "Up"
+            device["uptime_days"] = 0
+            break
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
     return {"status": "success", "message": f"Device {equipment_id} restarted successfully."}
 
 def update_firmware_tool(inputs: dict) -> dict:
