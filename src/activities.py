@@ -662,6 +662,22 @@ def restart_device_tool(inputs: dict) -> dict:
     with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
         json.dump(data, file, indent=2)
 
+    # Also add a new health metric to health_metrics.json to reset CPU and memory utilization to low values.
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    for metric in metrics:
+        if metric.get("id") == equipment_id:
+            # TODO: Add a new metric to the list under the equpiment ID
+            break
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
+
     return {"status": "success", "message": f"Device {equipment_id} restarted successfully."}
 
 def update_firmware_tool(inputs: dict) -> dict:
