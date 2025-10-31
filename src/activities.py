@@ -671,7 +671,7 @@ def restart_device_tool(inputs: dict) -> dict:
         activity.logger.error(exception_message)
         raise ApplicationError(exception_message)
     for metric in metrics:
-        if metric.get("id") == equipment_id:
+        if metric.get("equipment_id") == equipment_id:
             # TODO: Add a new metric to the list under the equpiment ID
             break
 
