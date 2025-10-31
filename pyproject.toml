@@ -34,6 +34,7 @@ run-monitoring-agent = "run_monitoring_agent:main"
 run-monitoring-agent-proactive = "run_monitoring_agent_proactive:main"
 query-monitoring-agent = "query_monitoring_agent:main"
 approve-monitoring-agent = "approve_monitoring_agent:main"
+mcp-server = "mcp_server:main"
 
 [build-system]
 requires = ["poetry-core"]
