@@ -1,6 +1,9 @@
 import asyncio
 import uuid
 import os
+import shutil
+import subprocess
+from pathlib import Path
 
 from shared.config import TEMPORAL_TASK_QUEUE, get_temporal_client
 from src.workflows import InfraMonAgentWorkflow
@@ -13,13 +16,57 @@ parser.add_argument(
     action="store_true",
     help="Automatically approve the repair workflow without user input.",
 )
+parser.add_argument(
+    "--reset-data",
+    action="store_true",
+    help="Reset data files to their original state before running the workflow.",
+)
 args = parser.parse_args() 
 
-async def main(auto_approve: bool) -> None:
+def reset_data_files() -> None:
+    """Reset data files to their original state from git repository."""
+    data_files = [
+        "data/infrastructure_inventory.json",
+        "data/health_metrics.json", 
+        "data/equipment_life_expectancy.json"
+    ]
+    
+    print("🔄 Resetting data files to original state...")
+    
+    try:
+        # Try to reset using git first
+        for file in data_files:
+            if Path(file).exists():
+                result = subprocess.run(
+                    ["git", "checkout", "HEAD", "--", file], 
+                    capture_output=True, 
+                    text=True,
+                    cwd=Path(__file__).parent
+                )
+                if result.returncode == 0:
+                    print(f"✅ Reset {file} from git")
+                else:
+                    print(f"⚠️  Could not reset {file} from git: {result.stderr}")
+            else:
+                print(f"⚠️  File {file} not found")
+                
+    except Exception as e:
+        print(f"❌ Error resetting data files: {e}")
+        print("💡 Consider manually restoring data files from your backup or git repository")
+        return
+        
+    print("✅ Data files reset complete!\n")
+
+async def main(auto_approve: bool, reset_data: bool) -> None:
     """Run the infrastructure monitoring agent workflow.
     This workflow analyzes and repairs infrastructure in the monitoring system.
     It will propose repairs and wait for user approval before executing them.
-    Use the --auto-approve flag to skip user approval and proceed with repairs automatically."""
+    Use the --auto-approve flag to skip user approval and proceed with repairs automatically.
+    Use the --reset-data flag to reset data files to their original state before running."""
+    
+    # Reset data files if requested
+    if reset_data:
+        reset_data_files()
     
     # Load environment variables
     load_dotenv(override=True)
@@ -151,4 +198,4 @@ async def main(auto_approve: bool) -> None:
     print("Review the infrastructure repair report for more details.")
 
 if __name__ == "__main__":
-    asyncio.run(main(args.auto_approve))
+    asyncio.run(main(args.auto_approve, args.reset_data))

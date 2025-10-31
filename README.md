@@ -119,9 +119,19 @@ Enable auto-approval for routine maintenance operations:
 poetry run python run_monitoring_agent.py --auto-approve
 ```
 
+Reset data files to original state before running (useful for demos):
+```bash
+poetry run python run_monitoring_agent.py --reset-data --auto-approve
+```
+
 For continuous proactive monitoring that runs indefinitely:
 ```bash
 poetry run python run_monitoring_agent_proactive.py --auto-approve
+```
+
+For proactive monitoring with data reset (ideal for clean demo runs):
+```bash
+poetry run python run_monitoring_agent_proactive.py --reset-data --auto-approve
 ```
 
 Query the status of a running workflow:

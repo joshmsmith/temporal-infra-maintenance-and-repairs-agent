@@ -16,7 +16,12 @@ A comprehensive Streamlit dashboard for monitoring network infrastructure equipm
 
 ## 🚀 Installation
 
-1. **Navigate to the ui directory:**
+1. **Install dependencies using Poetry:**
+   ```bash
+   poetry install
+   ```
+
+2. **Navigate to the ui directory (optional):**
    ```bash
    cd ui
    ```
