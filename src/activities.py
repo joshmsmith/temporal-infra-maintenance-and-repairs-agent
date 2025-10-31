@@ -539,12 +539,58 @@ async def repair_some_stuff(input: dict) -> dict:
     problems_repaired: int = 0
     problems_skipped: int = 0
     
-    #todo actually call some tools based on proposed tools
     proposed_tools_for_all_equipment = input.get("planning_result", {}).get("proposed_tools", [])
     if not proposed_tools_for_all_equipment:
         activity.logger.info("No proposed maintenance tools found.")
         return {"repair_summary": "No proposed maintenance tools found."}
-    
+
+    for equipment_id, equipment in proposed_tools_for_all_equipment.items():
+        print(f"*** Repairing order: {equipment_id} ***")
+        if not isinstance(equipment, list):
+            activity.logger.error(f"Expected a dictionary for equpiment, got {type(list)}")
+            raise ApplicationError(f"Expected a dictionary for equipment, got {type(list)}")
+        for tool in equipment:
+            activity.heartbeat(f"Repair for order {equipment_id} in progress...") # heartbeat the activity per tool
+            activity.logger.debug(f"Data for tool selected: {tool}")        
+            confidence_score = tool.get("confidence_score", 0.0)
+            activity.logger.debug(f"Confidence Score: {confidence_score}")
+            additional_notes = tool.get("additional_notes", "")
+            if additional_notes:
+                additional_notes = f"({additional_notes})"
+            activity.logger.debug(f"Additional Notes: {additional_notes}")
+            tool_name = tool.get("tool_name", "Unknown Tool Name")
+            activity.logger.debug(f"Using tool: {tool_name}")
+            if confidence_score < 0.5:
+                activity.logger.warning(f"Low confidence score for repair: {confidence_score}. Skipping repair for order {equipment_id}.")
+                problems_skipped += 1
+                continue
+            else:
+                print(f"- Executing {tool_name} with confidence score {confidence_score} {additional_notes}")
+                tool_arguments = tool.get("tool_arguments", {})
+                if not isinstance(tool_arguments, dict):
+                    activity.logger.error(f"Expected a dictionary for tool arguments, got {type(tool_arguments)}")
+                    raise ApplicationError(f"Expected a dictionary for tool arguments, got {type(tool_arguments)}")
+                activity.logger.debug(f"Tool arguments: {tool_arguments}")
+                
+                tool_function = get_equipment_tool_function_by_name(tool_name)
+                try:
+                    tool_result = tool_function(tool_arguments)
+                    activity.logger.debug(f"Tool {tool_name} executed with result: {tool_result}")
+
+                except Exception as e:
+                    activity.logger.error(f"Error executing tool {tool_name}: {e}")
+                    raise ApplicationError(f"Error executing tool {tool_name}: {e}")
+
+                print(f" - Tool {tool_name} executed successfully for order {equipment_id}!")
+                problems_repaired += 1
+                results["maintenance_tool_details"].append({
+                    "equipment_id": equipment_id,
+                    "tool_name": tool_name,
+                    "confidence_score": confidence_score,
+                    "additional_notes": additional_notes,
+                    "tool_arguments": tool_arguments,
+                    "tool_result": tool_result
+                })
     activity.logger.info(f"Executing maintenance on {len(proposed_tools_for_all_equipment)} pieces of equipment")
     
     results["problems_repaired"] = problems_repaired
@@ -566,3 +612,104 @@ async def report_some_stuff(input: dict) -> dict:
         "additional_notes": "All critical issues have been addressed through scheduled maintenance",
         "report_result": "Report generated successfully."
     }
+
+def get_equipment_tool_function_by_name(tool_name: str) -> Callable[[dict], dict]:
+    """
+    Returns the function corresponding to the given tool name.
+    Raises an ApplicationError if the tool name is not found.
+    """
+    tool_function_map = get_equipment_tool_function_map()
+    if tool_name not in tool_function_map:
+        exception_message = f"Tool {tool_name} not found in tool function map."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    return tool_function_map[tool_name]
+
+def get_equipment_tool_function_map() -> dict:
+    """
+    Returns a mapping of tool names to their corresponding functions.
+    This can be used to dynamically call tools based on the context.
+    """
+    return {
+        "restart_device": restart_device_tool,
+        "update_firmware": update_firmware_tool,
+        "replace_hardware": replace_hardware_tool,
+        "optimize_configuration": optimize_configuration_tool,
+        "schedule_maintenance": schedule_maintenance_tool,
+        "renew_contract": renew_contract_tool,
+    }
+
+def restart_device_tool(inputs: dict) -> dict:
+    """Simulates restarting a network device."""
+    equipment_id = inputs.get("equipment_id")
+
+    # Update infrastructure_inventory.json to set status to 'Operational', uptime days to 0, and remove alerts.
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device["status"] = "Operational"
+            device["uptime_days"] = 0
+            device["alerts"] = []
+            break
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
+    # Also add a new health metric to health_metrics.json to reset CPU and memory utilization to low values.
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    for metric in metrics:
+        if metric.get("equipment_id") == equipment_id:
+            # TODO: Add a new metric to the list under the equpiment ID
+            break
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
+
+    return {"status": "success", "message": f"Device {equipment_id} restarted successfully."}
+
+def update_firmware_tool(inputs: dict) -> dict:
+    """Simulates updating device firmware."""
+    equipment_id = inputs.get("equipment_id")
+    firmware_version = inputs.get("firmware_version")
+
+    return {"status": "success", "message": f"Device {equipment_id} firmware updated to version {firmware_version}."}
+
+def replace_hardware_tool(inputs: dict) -> dict:
+    """Simulates replacing hardware components."""
+    equipment_id = inputs.get("equipment_id")
+    component = inputs.get("component")
+
+    return {"status": "success", "message": f"Component {component} on device {equipment_id} replaced successfully."}
+
+def optimize_configuration_tool(inputs: dict) -> dict:
+    """Simulates optimizing device configuration."""
+    equipment_id = inputs.get("equipment_id")
+
+    return {"status": "success", "message": f"Configuration for device {equipment_id} optimized successfully."}
+
+def schedule_maintenance_tool(inputs: dict) -> dict:
+    """Simulates scheduling routine maintenance."""
+    equipment_id = inputs.get("equipment_id")
+    maintenance_type = inputs.get("maintenance_type")
+
+    return {"status": "success", "message": f"{maintenance_type} maintenance scheduled for device {equipment_id}."}
+
+def renew_contract_tool(inputs: dict) -> dict:
+    """Simulates renewing maintenance contract."""
+    equipment_id = inputs.get("equipment_id")
+    contract_type = inputs.get("contract_type")
+
+    return {"status": "success", "message": f"{contract_type} contract renewed for device {equipment_id}."}
