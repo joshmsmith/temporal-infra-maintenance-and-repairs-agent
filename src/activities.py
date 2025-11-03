@@ -672,7 +672,7 @@ def restart_device_tool(inputs: dict) -> dict:
         raise ApplicationError(exception_message)
     for metric in metrics:
         if metric.get("equipment_id") == equipment_id:
-            # TODO: Add a new metric to the list under the equpiment ID
+            # TODO: Add a new metric to the list under the equipment ID
             break
 
     with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:

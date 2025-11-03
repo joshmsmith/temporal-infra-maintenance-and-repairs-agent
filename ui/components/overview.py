@@ -10,7 +10,15 @@ from typing import Dict
 def render_overview(df: pd.DataFrame):
     """Render the overview dashboard page."""
     
-    st.title("🏢 Infrastructure Overview")
+    # Header with refresh button
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.title("🏢 Infrastructure Overview")
+    with col2:
+        # Note: The refresh button will trigger a page rerun, 
+        # and the parent app handles cache clearing
+        st.button("🔄 Refresh Data", key="refresh_overview")
+    
     st.markdown("---")
     
     # KPI Cards

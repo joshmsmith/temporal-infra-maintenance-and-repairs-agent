@@ -18,6 +18,19 @@ from ui.components.lifecycle import render_lifecycle_management
 from ui.components.alerts import render_alerts
 
 
+def render_page_header(page_title: str):
+    """Render page header with refresh button."""
+    col1, col2 = st.columns([3, 1])
+    
+    with col1:
+        st.title(page_title)
+    
+    with col2:
+        if st.button("🔄 Refresh Data", key=f"refresh_{page_title}"):
+            st.cache_data.clear()
+            st.rerun()
+
+
 # Page configuration
 st.set_page_config(
     page_title="Infrastructure Monitoring Dashboard",
@@ -68,10 +81,35 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-@st.cache_data
+@st.cache_data(ttl=60)  # Cache for 60 seconds
 def load_data():
     """Load and cache the infrastructure data."""
     return load_all_data()
+
+@st.cache_data
+def get_data_file_timestamps():
+    """Get timestamps of data files for change detection."""
+    from pathlib import Path
+    import os
+    
+    project_root = Path(__file__).parent.parent
+    data_dir = project_root / "data"
+    
+    timestamps = {}
+    data_files = [
+        "infrastructure_inventory.json",
+        "health_metrics.json", 
+        "equipment_life_expectancy.json"
+    ]
+    
+    for file_name in data_files:
+        file_path = data_dir / file_name
+        if file_path.exists():
+            timestamps[file_name] = os.path.getmtime(file_path)
+        else:
+            timestamps[file_name] = 0
+    
+    return timestamps
 
 
 def main():
@@ -92,6 +130,88 @@ def main():
             "🔔 Alerts & Notifications"
         ]
     )
+    
+    st.sidebar.markdown("---")
+    
+    # Data refresh controls
+    st.sidebar.markdown("### 🔄 Data Refresh")
+    
+    # Auto-refresh options
+    refresh_interval = st.sidebar.selectbox(
+        "Auto-refresh interval",
+        ["Off", "30 seconds", "1 minute", "5 minutes"],
+        index=0
+    )
+    
+    # Manual refresh button
+    if st.sidebar.button("🔄 Refresh Now"):
+        st.cache_data.clear()
+        st.session_state.data_refreshed = True
+        st.rerun()
+    
+    # Clear all cache button
+    if st.sidebar.button("🗑️ Clear Cache"):
+        st.cache_data.clear()
+        st.session_state.data_refreshed = True
+        st.rerun()
+    
+    # Auto-refresh logic
+    if refresh_interval != "Off":
+        # Set up auto-refresh based on selected interval
+        interval_seconds = {
+            "30 seconds": 30,
+            "1 minute": 60,
+            "5 minutes": 300
+        }[refresh_interval]
+        
+        # Use st.empty() to create a placeholder for countdown
+        countdown_placeholder = st.sidebar.empty()
+        
+        # Initialize session state for auto-refresh
+        if 'last_refresh' not in st.session_state:
+            st.session_state.last_refresh = 0
+        
+        import time
+        current_time = time.time()
+        
+        # Check if it's time to refresh
+        if current_time - st.session_state.last_refresh >= interval_seconds:
+            st.session_state.last_refresh = current_time
+            st.session_state.data_refreshed = True
+            st.cache_data.clear()
+            st.rerun()
+        else:
+            # Show countdown
+            remaining = interval_seconds - (current_time - st.session_state.last_refresh)
+            countdown_placeholder.markdown(f"⏱️ Next refresh in {int(remaining)}s")
+            
+            # Schedule a rerun to update the countdown
+            time.sleep(1)
+            st.rerun()
+    
+    # Check for file changes
+    current_timestamps = get_data_file_timestamps()
+    
+    # Store previous timestamps in session state
+    if 'previous_timestamps' not in st.session_state:
+        st.session_state.previous_timestamps = current_timestamps
+    
+    # Check if any files have changed
+    files_changed = False
+    for file_name, current_time in current_timestamps.items():
+        previous_time = st.session_state.previous_timestamps.get(file_name, 0)
+        if current_time > previous_time:
+            files_changed = True
+            break
+    
+    # If files changed, show notification and update timestamps
+    if files_changed:
+        st.sidebar.info("📝 Data files have been updated!")
+        if st.sidebar.button("Load Updated Data"):
+            st.cache_data.clear()
+            st.session_state.previous_timestamps = current_timestamps
+            st.session_state.data_refreshed = True
+            st.rerun()
     
     st.sidebar.markdown("---")
     
@@ -116,6 +236,38 @@ def main():
     try:
         with st.spinner("Loading infrastructure data..."):
             df = load_data()
+        
+        # Show data freshness indicator
+        import datetime
+        current_time = datetime.datetime.now()
+        st.sidebar.markdown(f"**Last loaded:** {current_time.strftime('%H:%M:%S')}")
+        
+        # Show notification if data was just refreshed
+        if 'data_refreshed' in st.session_state and st.session_state.data_refreshed:
+            st.success("✅ Data refreshed successfully!")
+            st.session_state.data_refreshed = False
+        
+        # Show data file info
+        with st.sidebar.expander("📊 Data File Info", expanded=False):
+            for file_name, timestamp in current_timestamps.items():
+                if timestamp > 0:
+                    file_time = datetime.datetime.fromtimestamp(timestamp)
+                    st.markdown(f"**{file_name}**")
+                    st.markdown(f"Modified: {file_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                else:
+                    st.markdown(f"**{file_name}** - Not found")
+        
+        # Check for page-level refresh buttons
+        refresh_triggered = False
+        for key in st.session_state:
+            if key.startswith("refresh_") and st.session_state[key]:
+                refresh_triggered = True
+                break
+        
+        if refresh_triggered:
+            st.cache_data.clear()
+            st.session_state.data_refreshed = True
+            st.rerun()
         
         # Render selected page
         if page == "📊 Overview":

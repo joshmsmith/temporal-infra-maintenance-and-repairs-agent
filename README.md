@@ -197,7 +197,7 @@ It typically waits for approval before executing maintenance, but can auto-execu
 
 Here's the proactive infrastructure maintenance in action:
 ```none
-poetry run python start_maintenance_agent_proactive.py 
+poetry run python run_monitoring_agent_proactive.py 
 Client connection: [localhost:7233], Namespace: [default], Task Queue: [infrastructure-maintenance-task-queue]
 Josh's Proactive Infrastructure Maintenance started with ID: always-be-maintainin-for-Josh
 Current maintenance status: MONITORING-INFRASTRUCTURE

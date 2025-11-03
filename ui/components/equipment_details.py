@@ -8,7 +8,13 @@ from utils.calculations import get_health_status_color, get_severity_color
 def render_equipment_inventory(df: pd.DataFrame):
     """Render the equipment inventory page with filters and search."""
     
-    st.title("📦 Equipment Inventory")
+    # Header with refresh button
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.title("📦 Equipment Inventory")
+    with col2:
+        st.button("🔄 Refresh Data", key="refresh_equipment")
+    
     st.markdown("---")
     
     # Sidebar filters

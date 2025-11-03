@@ -10,7 +10,13 @@ from utils.data_loader import DataLoader
 def render_health_metrics(df: pd.DataFrame):
     """Render the health metrics page with time-series charts."""
     
-    st.title("📈 Health Metrics & Trends")
+    # Header with refresh button
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.title("📈 Health Metrics & Trends")
+    with col2:
+        st.button("🔄 Refresh Data", key="refresh_health")
+    
     st.markdown("---")
     
     # Equipment selector

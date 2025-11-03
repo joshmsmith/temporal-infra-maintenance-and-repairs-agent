@@ -126,10 +126,35 @@ The dashboard loads data from JSON files in the `data/` directory:
 
 ## 🔄 Data Refresh
 
-The dashboard uses Streamlit's caching mechanism for optimal performance:
-- Data is automatically cached on initial load
-- Cache is retained during the session
-- Manual refresh: Use the browser refresh button or click "Rerun" in Streamlit
+The dashboard provides multiple ways to refresh data when infrastructure changes occur:
+
+### Automatic Data Detection
+- **File Change Detection**: Automatically detects when data files are modified
+- **Smart Notifications**: Shows "📝 Data files have been updated!" when changes are detected
+- **One-Click Refresh**: Click "Load Updated Data" to refresh with new data
+
+### Manual Refresh Options
+- **Page-Level Refresh**: Each page has a "🔄 Refresh Data" button in the top-right corner
+- **Sidebar Controls**: 
+  - "🔄 Refresh Now" - Immediate data refresh
+  - "🗑️ Clear Cache" - Clears all cached data and refreshes
+
+### Auto-Refresh Settings
+- **Configurable Intervals**: Choose from Off, 30 seconds, 1 minute, or 5 minutes
+- **Live Countdown**: Shows time remaining until next auto-refresh
+- **Smart Caching**: Data cached for 60 seconds to balance performance and freshness
+
+### Data Freshness Indicators
+- **Last Loaded Time**: Shows when data was last refreshed in the sidebar
+- **File Timestamps**: Expandable "📊 Data File Info" shows modification times for all data files
+- **Success Notifications**: Confirmation messages when data is successfully refreshed
+
+### Testing Data Changes
+Use the included test script to simulate data changes:
+```bash
+python tests/test_ui_refresh.py
+```
+This will modify infrastructure data and trigger refresh notifications in the UI.
 
 ## 🎯 Demo Narrative
 

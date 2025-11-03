@@ -18,7 +18,13 @@ from utils.calculations import (
 def render_lifecycle_management(df: pd.DataFrame):
     """Render the lifecycle management page."""
     
-    st.title("⏳ Equipment Lifecycle Management")
+    # Header with refresh button
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.title("⏳ Equipment Lifecycle Management")
+    with col2:
+        st.button("🔄 Refresh Data", key="refresh_lifecycle")
+    
     st.markdown("---")
     
     # Calculate lifecycle metrics for all equipment
