@@ -15,7 +15,7 @@ This agent also monitors expected life expectancy of physical components ([life 
 
 Common infrastructure issues that the agents handle include:
 
-```json #todo sample data here
+```json 
 {
       "component_id": "DB-CLUSTER-001",
       "component_name": "Primary Database Cluster",
@@ -57,8 +57,8 @@ This DAPER pattern is particularly valuable for **infrastructure operations**:
 - Configuration drift detection and correction
 
 ### Infrastructure Maintenance System Overview: 
-#todo finish this
-<img src="./assets/infrastructure-maintenance-overview.png" width="90%" alt="Infrastructure Maintenance Overview">
+
+<img src="./assets/infrastructure_overview.png" width="90%" alt="Infrastructure Maintenance Overview">
 Operations teams interact with the maintenance system to monitor infrastructure health, review proposed actions, and approve critical repairs.
 The maintenance tools are executed durably with Temporal - enabling reliable, long-running infrastructure operations with AI-powered decision making.
 
@@ -146,7 +146,30 @@ poetry run python approve_monitoring_agent.py --workflow-id "infra-monitoring-ag
 
 Here's what the infrastructure monitoring output looks like:
 ```none
-#TODO put output here
+Infrastructure Monitoring Workflow started with ID: infra-monitoring-agent-for-Josh-96c49c2d-9ce2-4d8e-a135-1d3a7d1cac7c
+Current infrastructure status: DETECTING-PROBLEMS
+Current infrastructure status: PLANNING-REPAIR
+Current infrastructure status: PLANNING-REPAIR
+Current infrastructure status: PENDING-APPROVAL
+Current infrastructure status: PENDING-APPROVAL
+Infrastructure repair planning is complete.
+Additional Notes: The proposed tools are based on the issues reported and the equipment life expectancy data. The confidence scores are based on the severity of the issues and the expected effectiveness of the proposed tools.
+Confidence Score: 0.0
+Proposed Infrastructure Repairs:
+### Equipment ID: EQ-10001
+
+  - EQ-10001: restart_device: confidence score 0.8 
+    - maintenance_window: 2025-10-24 00:00:00
+    - rollback_plan: Revert to previous firmware version
+### Equipment ID: EQ-10002
+
+  - EQ-10002: optimize_configuration: confidence score 0.7 
+    - configuration_changes: Adjust CPU and memory allocation
+    - maintenance_window: 2025-10-24 00:00:00
+<snip>
+Waiting for user approval to proceed with infrastructure repairs...
+Infrastructure repair has not been approved yet. Waiting for user input...
+Do you approve the infrastructure repair? (yes/no): yes
 ```
 
 You can follow along with its progress in the Temporal UI Workflow History.
@@ -190,7 +213,7 @@ These monitoring agents validate their output against infrastructure best practi
 This proactive agent continuously monitors infrastructure health, performs predictive analysis, and initiates maintenance before issues become critical. 
 It can integrate with alerting systems and call back into incident management platforms with the `callback` input configured. <br />
 
-<img src="./assets/callback-to-infrastructure-agent.png" width="80%" alt="Callback to Infrastructure Agent">
+<img src="./assets/callback-to-agent.png" width="80%" alt="Callback to Infrastructure Agent">
 
 (It can also integrate with PagerDuty, Slack, email alerts, or other notification systems.) <br/>
 It typically waits for approval before executing maintenance, but can auto-execute routine operations when confidence exceeds 95% and impact is low. 
@@ -242,6 +265,7 @@ Production infrastructure maintenance tools must be [idempotent](https://tempora
 
 ### Security & Compliance
 Infrastructure agents require elevated privileges - implement proper authentication, authorization, and audit logging. Consider integration with infrastructure-as-code tools, configuration management systems, and compliance frameworks for enterprise environments.
+Data security is critical, recommend reviewing [Temporal Cloud Data Security](https://temporal.io/blog/how-to-protect-sensitive-data-in-a-temporal-application) as a place to start.
 
 
 
