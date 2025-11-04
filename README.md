@@ -197,7 +197,7 @@ WSL config:
 ```
 Here's how it looks with Goose managing infrastructure:
 
-#TODO diagrams
+
 <img src="./assets/goose-infrastructure-maintained.png" width="80%" alt="Goose Infrastructure Success">
 
 ### Detection, Analysis, and Reporting: Infrastructure Monitoring Agents
