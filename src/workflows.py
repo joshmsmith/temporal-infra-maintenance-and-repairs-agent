@@ -57,6 +57,7 @@ class InfraMonAgentWorkflow:
         await workflow.wait_condition(
             lambda: self.approved is not False or self.rejected is not False,
             timeout=timedelta(hours=12),
+            timeout_summary="Wait For Tool Approval"
         )
 
         if self.rejected:
@@ -340,7 +341,7 @@ class InfraMonAgentWorkflowProactive(InfraMonAgentWorkflow):
                     await workflow.wait_condition(
                         lambda: self.approved is not False or self.rejected is not False,
                         timeout=timedelta(hours=20),  # Wait for up to 24 hours for approval
-                        timeout_summary="Tool Approval",
+                        timeout_summary="Wait For Tool Approval",
                     )
 
                     if self.rejected:

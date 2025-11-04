@@ -545,7 +545,7 @@ async def repair_some_stuff(input: dict) -> dict:
         return {"repair_summary": "No proposed maintenance tools found."}
 
     for equipment_id, equipment in proposed_tools_for_all_equipment.items():
-        print(f"*** Repairing order: {equipment_id} ***")
+        print(f"*** Repairing equipment: {equipment_id} ***")
         if not isinstance(equipment, list):
             activity.logger.error(f"Expected a dictionary for equpiment, got {type(list)}")
             raise ApplicationError(f"Expected a dictionary for equipment, got {type(list)}")
@@ -567,6 +567,7 @@ async def repair_some_stuff(input: dict) -> dict:
             else:
                 print(f"- Executing {tool_name} with confidence score {confidence_score} {additional_notes}")
                 tool_arguments = tool.get("tool_arguments", {})
+                tool_arguments["equipment_id"] = equipment_id  # Ensure equipment_id is included in tool arguments
                 if not isinstance(tool_arguments, dict):
                     activity.logger.error(f"Expected a dictionary for tool arguments, got {type(tool_arguments)}")
                     raise ApplicationError(f"Expected a dictionary for tool arguments, got {type(tool_arguments)}")
@@ -598,6 +599,89 @@ async def repair_some_stuff(input: dict) -> dict:
     results["repair_summary"] = f"Infrastructure maintenance scheduled successfully: {problems_repaired} items maintained (with {problems_skipped} skipped)."
     
     activity.logger.info(f"Maintenance Summary: {results['repair_summary']}")
+    
+    # Generate PDF report of maintenance work performed
+    activity.heartbeat("Generating maintenance execution report...")
+    
+    # Create reports directory if it doesn't exist
+    os.makedirs("./reports", exist_ok=True)
+    
+    # Build report content
+    from datetime import datetime
+    report_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    report_contents = "# Infrastructure Maintenance Execution Report\n\n"
+    report_contents += f"**Report Generated:** {report_date}\n\n"
+    report_contents += f"**Maintenance Summary:** {results['repair_summary']}\n\n"
+    report_contents += f"- **Equipment Processed:** {len(proposed_tools_for_all_equipment)}\n"
+    report_contents += f"- **Maintenance Actions Completed:** {problems_repaired}\n"
+    report_contents += f"- **Actions Skipped (Low Confidence):** {problems_skipped}\n\n"
+    
+    if results["maintenance_tool_details"]:
+        report_contents += "## Detailed Maintenance Actions\n\n"
+        
+        for detail in results["maintenance_tool_details"]:
+            equipment_id = detail["equipment_id"]
+            tool_name = detail["tool_name"]
+            confidence_score = detail["confidence_score"]
+            additional_notes = detail.get("additional_notes", "").strip("()")
+            tool_arguments = detail["tool_arguments"]
+            tool_result = detail["tool_result"]
+            
+            report_contents += f"### Equipment: {equipment_id}\n"
+            report_contents += f"**Tool Executed:** {tool_name}\n\n"
+            report_contents += f"**Confidence Score:** {confidence_score}\n\n"
+            
+            if additional_notes:
+                report_contents += f"**Notes:** {additional_notes}\n\n"
+            
+            report_contents += f"**Tool Arguments:**\n"
+            for arg, value in tool_arguments.items():
+                report_contents += f"- {arg}: {value}\n"
+            report_contents += "\n"
+            
+            report_contents += f"**Execution Result:**\n"
+            report_contents += f"- Status: {tool_result.get('status', 'Unknown')}\n"
+            report_contents += f"- Message: {tool_result.get('message', 'No message provided')}\n\n"
+            
+            report_contents += "---\n\n"
+    else:
+        report_contents += "## No Maintenance Actions Performed\n\n"
+        report_contents += "No tools were executed during this maintenance cycle.\n\n"
+    
+    if problems_skipped > 0:
+        report_contents += f"## Skipped Actions\n\n"
+        report_contents += f"{problems_skipped} maintenance actions were skipped due to low confidence scores (<0.5).\n"
+        report_contents += "These items may require manual review or additional analysis.\n\n"
+    
+    report_contents += "## Recommendations\n\n"
+    if problems_repaired > 0:
+        report_contents += "- Monitor equipment performance after maintenance to verify improvements\n"
+        report_contents += "- Update maintenance schedules based on completed actions\n"
+        report_contents += "- Review health metrics for signs of improvement\n"
+    else:
+        report_contents += "- No immediate actions were required\n"
+        report_contents += "- Continue regular monitoring of infrastructure health\n"
+    
+    report_contents += "\n---\n\n"
+    report_contents += "*This report was generated automatically by the Infrastructure Monitoring Agent*\n"
+    
+    # Generate PDF report
+    try:
+        maintenance_report_pdf = MarkdownPdf(toc_level=2, optimize=True)
+        maintenance_report_pdf.add_section(Section(report_contents))
+        maintenance_report_pdf.meta["title"] = "Infrastructure Maintenance Execution Report"
+        maintenance_report_pdf.meta["author"] = "Infrastructure Monitoring Agent"
+        maintenance_report_pdf.meta["subject"] = f"Maintenance Report - {report_date}"
+        maintenance_report_pdf.save(TOOL_EXECUTION_REPORT_NAME + ".pdf")
+        
+        activity.logger.info(f"Maintenance execution report saved to {TOOL_EXECUTION_REPORT_NAME + '.pdf'}")
+        results["report_file"] = TOOL_EXECUTION_REPORT_NAME + ".pdf"
+        
+    except Exception as e:
+        activity.logger.error(f"Error generating maintenance report PDF: {e}")
+        results["report_error"] = str(e)
+    
     return results
 
 
@@ -656,7 +740,7 @@ def restart_device_tool(inputs: dict) -> dict:
         if device.get("id") == equipment_id:
             device["status"] = "Operational"
             device["uptime_days"] = 0
-            device["alerts"] = []
+            #device["alerts"] = []
             break
 
     with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
@@ -670,10 +754,42 @@ def restart_device_tool(inputs: dict) -> dict:
         exception_message = "No health metrics found."
         activity.logger.error(exception_message)
         raise ApplicationError(exception_message)
+    
+    # Find the equipment and add a new healthy reading
+    equipment_found = False
     for metric in metrics:
         if metric.get("equipment_id") == equipment_id:
-            # TODO: Add a new metric to the list under the equipment ID
+            equipment_found = True
+            # Create a new healthy reading with current timestamp
+            from datetime import datetime
+            current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+            
+            # Add healthy metrics after device restart
+            new_reading = {
+                "timestamp": current_time,
+                "cpu_utilization_percent": 15,  # Low CPU after restart
+                "memory_utilization_percent": 25,  # Low memory after restart
+                "temperature_celsius": 42,  # Normal operating temperature
+                "packet_loss_percent": 0.01,  # Minimal packet loss
+                "latency_ms": 2.5  # Low latency
+            }
+            
+            # Add new reading to the beginning of the list (most recent)
+            metric["recent_readings"].insert(0, new_reading)
+            
+            # Keep only the last 10 readings to prevent file from growing too large
+            if len(metric["recent_readings"]) > 10:
+                metric["recent_readings"] = metric["recent_readings"][:10]
+            
+            # Update the overall health score to reflect improved status
+            metric["health_score"] = 92.5  # High health score after restart
+            metric["status"] = "Operational"  # Update status to operational
+            
+            activity.logger.info(f"Added new healthy metric reading for device {equipment_id}")
             break
+    
+    if not equipment_found:
+        activity.logger.warning(f"Equipment {equipment_id} not found in health metrics")
 
     with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
         json.dump(health_data, file, indent=2)
@@ -681,35 +797,520 @@ def restart_device_tool(inputs: dict) -> dict:
     return {"status": "success", "message": f"Device {equipment_id} restarted successfully."}
 
 def update_firmware_tool(inputs: dict) -> dict:
-    """Simulates updating device firmware."""
+    """Simulates updating device firmware by updating inventory and adding health metrics."""
     equipment_id = inputs.get("equipment_id")
-    firmware_version = inputs.get("firmware_version")
+    firmware_version = inputs.get("firmware_version", "latest")
+
+    # Update infrastructure_inventory.json to update firmware version and last maintenance date
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    device_found = False
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device_found = True
+            # Update firmware version
+            old_firmware = device.get("firmware_version", "unknown")
+            device["firmware_version"] = firmware_version
+            
+            # Update last maintenance date to current date
+            from datetime import datetime
+            device["last_maintenance"] = datetime.now().strftime("%Y-%m-%d")
+            
+            # Ensure device is operational after firmware update
+            device["status"] = "Operational"
+            
+            # Remove any firmware-related alerts
+            alerts = device.get("alerts", [])
+            #device["alerts"] = []
+            
+            activity.logger.info(f"Updated device {equipment_id} firmware from {old_firmware} to {firmware_version}")
+            break
+
+    if not device_found:
+        exception_message = f"Device {equipment_id} not found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
+    # Add a new health metric to health_metrics.json showing improved stability after firmware update
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    # Find the equipment and add a new healthy reading
+    equipment_found = False
+    for metric in metrics:
+        if metric.get("equipment_id") == equipment_id:
+            equipment_found = True
+            # Create a new reading showing improved stability after firmware update
+            from datetime import datetime
+            current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+            
+            # Add metrics showing firmware update benefits
+            new_reading = {
+                "timestamp": current_time,
+                "cpu_utilization_percent": 22,  # Moderate CPU after firmware optimization
+                "memory_utilization_percent": 35,  # Improved memory management
+                "temperature_celsius": 44,  # Slightly elevated during update process
+                "packet_loss_percent": 0.02,  # Minimal packet loss
+                "latency_ms": 3.1  # Good latency performance
+            }
+            
+            # Add new reading to the beginning of the list (most recent)
+            metric["recent_readings"].insert(0, new_reading)
+            
+            # Keep only the last 10 readings to prevent file from growing too large
+            if len(metric["recent_readings"]) > 10:
+                metric["recent_readings"] = metric["recent_readings"][:10]
+            
+            # Update the overall health score to reflect improved stability
+            metric["health_score"] = 88.5  # Good health score after firmware update
+            metric["status"] = "Operational"  # Update status to operational
+            
+            activity.logger.info(f"Added new health metric reading for device {equipment_id} after firmware update")
+            break
+    
+    if not equipment_found:
+        activity.logger.warning(f"Equipment {equipment_id} not found in health metrics")
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
 
     return {"status": "success", "message": f"Device {equipment_id} firmware updated to version {firmware_version}."}
 
 def replace_hardware_tool(inputs: dict) -> dict:
-    """Simulates replacing hardware components."""
+    """Simulates replacing hardware components by updating inventory and adding health metrics."""
     equipment_id = inputs.get("equipment_id")
-    component = inputs.get("component")
+    component = inputs.get("component", "hardware component")
+    replacement_part = inputs.get("replacement_part", "new component")
+
+    # Update infrastructure_inventory.json to reflect hardware replacement
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    device_found = False
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device_found = True
+            
+            # Update last maintenance date to current date
+            from datetime import datetime
+            device["last_maintenance"] = datetime.now().strftime("%Y-%m-%d")
+            
+            # Ensure device is operational after hardware replacement
+            device["status"] = "Operational"
+            
+            # Reset uptime since hardware replacement typically requires restart
+            device["uptime_days"] = 0
+            
+            # Remove alerts if any
+            alerts = device.get("alerts", [])
+            #device["alerts"] = []
+            
+            activity.logger.info(f"Replaced {component} on device {equipment_id} with {replacement_part}")
+            break
+
+    if not device_found:
+        exception_message = f"Device {equipment_id} not found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
+    # Add a new health metric to health_metrics.json showing excellent performance after hardware replacement
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    # Find the equipment and add a new excellent reading
+    equipment_found = False
+    for metric in metrics:
+        if metric.get("equipment_id") == equipment_id:
+            equipment_found = True
+            # Create a new reading showing excellent performance after hardware replacement
+            from datetime import datetime
+            current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+            
+            # Add metrics showing hardware replacement benefits - new hardware performs excellently
+            new_reading = {
+                "timestamp": current_time,
+                "cpu_utilization_percent": 12,  # Very low CPU with new hardware
+                "memory_utilization_percent": 20,  # Excellent memory performance
+                "temperature_celsius": 38,  # Cool running temperature with new hardware
+                "packet_loss_percent": 0.001,  # Virtually no packet loss
+                "latency_ms": 1.8  # Excellent latency with new hardware
+            }
+            
+            # Add new reading to the beginning of the list (most recent)
+            metric["recent_readings"].insert(0, new_reading)
+            
+            # Keep only the last 10 readings to prevent file from growing too large
+            if len(metric["recent_readings"]) > 10:
+                metric["recent_readings"] = metric["recent_readings"][:10]
+            
+            # Update the overall health score to reflect excellent performance with new hardware
+            metric["health_score"] = 95.8  # Excellent health score after hardware replacement
+            metric["status"] = "Operational"  # Update status to operational
+            
+            activity.logger.info(f"Added new health metric reading for device {equipment_id} after hardware replacement")
+            break
+    
+    if not equipment_found:
+        activity.logger.warning(f"Equipment {equipment_id} not found in health metrics")
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
 
     return {"status": "success", "message": f"Component {component} on device {equipment_id} replaced successfully."}
 
 def optimize_configuration_tool(inputs: dict) -> dict:
-    """Simulates optimizing device configuration."""
+    """Simulates optimizing system configurations by updating settings and adding performance metrics."""
     equipment_id = inputs.get("equipment_id")
+    optimization_type = inputs.get("optimization_type", "Performance Optimization")
+    optimization_details = inputs.get("optimization_details", "CPU and memory optimization")
 
-    return {"status": "success", "message": f"Configuration for device {equipment_id} optimized successfully."}
+    # Update infrastructure_inventory.json to reflect configuration optimization
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    device_found = False
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device_found = True
+            
+            # Update last maintenance date to current date
+            from datetime import datetime
+            device["last_maintenance"] = datetime.now().strftime("%Y-%m-%d")
+            
+            # Ensure device is operational after optimization
+            device["status"] = "Operational"
+            
+            # Update configuration version to reflect optimization
+            config_version = device.get("configuration_version", "1.0.0")
+            # Increment minor version for configuration optimization
+            major, minor, patch = config_version.split('.')
+            new_minor = str(int(minor) + 1)
+            device["configuration_version"] = f"{major}.{new_minor}.{patch}"
+            
+            # Remove performance-related alerts after optimization
+            alerts = device.get("alerts", [])
+            #device["alerts"] = []
+            
+            activity.logger.info(f"Optimized configuration for device {equipment_id} - {optimization_type}")
+            break
+
+    if not device_found:
+        exception_message = f"Device {equipment_id} not found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
+    # Add a new health metric to health_metrics.json showing improved performance after optimization
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    # Find the equipment and add optimized performance metrics
+    equipment_found = False
+    for metric in metrics:
+        if metric.get("equipment_id") == equipment_id:
+            equipment_found = True
+            # Create a new reading showing improved performance after optimization
+            from datetime import datetime
+            current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+            
+            # Get the previous reading to show improvement
+            previous_reading = metric["recent_readings"][0] if metric["recent_readings"] else {}
+            prev_cpu = previous_reading.get("cpu_utilization_percent", 50)
+            prev_memory = previous_reading.get("memory_utilization_percent", 60)
+            prev_temp = previous_reading.get("temperature_celsius", 55)
+            
+            # Add metrics showing configuration optimization benefits
+            new_reading = {
+                "timestamp": current_time,
+                "cpu_utilization_percent": max(15, prev_cpu * 0.6),  # Reduce CPU usage by 40%
+                "memory_utilization_percent": max(25, prev_memory * 0.7),  # Reduce memory usage by 30%
+                "temperature_celsius": max(35, prev_temp * 0.9),  # Reduce temperature by 10%
+                "packet_loss_percent": min(0.1, previous_reading.get("packet_loss_percent", 0.5) * 0.5),  # Halve packet loss
+                "latency_ms": max(1.0, previous_reading.get("latency_ms", 5.0) * 0.8)  # Reduce latency by 20%
+            }
+            
+            # Add new reading to the beginning of the list (most recent)
+            metric["recent_readings"].insert(0, new_reading)
+            
+            # Keep only the last 10 readings to prevent file from growing too large
+            if len(metric["recent_readings"]) > 10:
+                metric["recent_readings"] = metric["recent_readings"][:10]
+            
+            # Update the overall health score to reflect optimization improvements
+            current_score = metric.get("health_score", 70)
+            # Optimization typically improves health score by 10-15 points
+            metric["health_score"] = min(98.0, current_score + 12.5)
+            metric["status"] = "Operational"  # Update status to operational
+            
+            activity.logger.info(f"Added optimized performance metrics for device {equipment_id}")
+            break
+    
+    if not equipment_found:
+        activity.logger.warning(f"Equipment {equipment_id} not found in health metrics")
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
+
+    return {"status": "success", "message": f"Configuration optimized for {equipment_id} with {optimization_type}."}
 
 def schedule_maintenance_tool(inputs: dict) -> dict:
-    """Simulates scheduling routine maintenance."""
+    """Schedules future maintenance activities by updating maintenance schedules and adding tracking metrics."""
     equipment_id = inputs.get("equipment_id")
-    maintenance_type = inputs.get("maintenance_type")
+    maintenance_type = inputs.get("maintenance_type", "Preventive Maintenance")
+    scheduled_date = inputs.get("scheduled_date")
+    priority = inputs.get("priority", "Medium")
+
+    # Update infrastructure_inventory.json to reflect scheduled maintenance
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    device_found = False
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device_found = True
+            
+            # Add scheduled maintenance information
+            if "scheduled_maintenance" not in device:
+                device["scheduled_maintenance"] = []
+            
+            # Create maintenance schedule entry
+            from datetime import datetime
+            maintenance_entry = {
+                "type": maintenance_type,
+                "scheduled_date": scheduled_date,
+                "priority": priority,
+                "status": "Scheduled",
+                "created_date": datetime.now().strftime("%Y-%m-%d"),
+                "estimated_duration_hours": 2 if maintenance_type == "Preventive Maintenance" else 4
+            }
+            
+            # Add to scheduled maintenance list
+            device["scheduled_maintenance"].append(maintenance_entry)
+            
+            # Update maintenance window status
+            device["maintenance_window"] = f"Scheduled for {scheduled_date}"
+            
+            # Add maintenance alert if not already present
+            alerts = device.get("alerts", [])
+            maintenance_alert = f"Scheduled maintenance: {maintenance_type} on {scheduled_date}"
+            if maintenance_alert not in alerts:
+                alerts.append(maintenance_alert)
+                device["alerts"] = alerts
+            
+            activity.logger.info(f"Scheduled {maintenance_type} for device {equipment_id} on {scheduled_date}")
+            break
+
+    if not device_found:
+        exception_message = f"Device {equipment_id} not found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
+    # Add a new health metric noting the maintenance scheduling
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    # Find the equipment and add maintenance scheduling note
+    equipment_found = False
+    for metric in metrics:
+        if metric.get("equipment_id") == equipment_id:
+            equipment_found = True
+            
+            # Add maintenance notes to the metric
+            if "maintenance_notes" not in metric:
+                metric["maintenance_notes"] = []
+            
+            from datetime import datetime
+            current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+            
+            maintenance_note = {
+                "timestamp": current_time,
+                "type": "Maintenance Scheduled",
+                "details": f"{maintenance_type} scheduled for {scheduled_date}",
+                "priority": priority,
+                "status": "Scheduled"
+            }
+            
+            # Add maintenance note
+            metric["maintenance_notes"].append(maintenance_note)
+            
+            # Keep only the last 5 maintenance notes
+            if len(metric["maintenance_notes"]) > 5:
+                metric["maintenance_notes"] = metric["maintenance_notes"][-5:]
+            
+            # Update maintenance status in the metric
+            metric["next_maintenance"] = scheduled_date
+            metric["maintenance_status"] = "Scheduled"
+            
+            activity.logger.info(f"Added maintenance scheduling note for device {equipment_id}")
+            break
+    
+    if not equipment_found:
+        activity.logger.warning(f"Equipment {equipment_id} not found in health metrics")
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
 
     return {"status": "success", "message": f"{maintenance_type} maintenance scheduled for device {equipment_id}."}
 
 def renew_contract_tool(inputs: dict) -> dict:
-    """Simulates renewing maintenance contract."""
+    """Simulates renewing maintenance contract by updating contract information and warranty status."""
     equipment_id = inputs.get("equipment_id")
-    contract_type = inputs.get("contract_type")
+    contract_type = inputs.get("contract_type", "Standard Maintenance Contract")
+    contract_duration = inputs.get("contract_duration", "12 months")
+    vendor = inputs.get("vendor", "ServiceProvider Inc.")
+
+    # Update infrastructure_inventory.json to reflect contract renewal
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "r") as file:
+        data = json.load(file)
+    devices = data.get("infrastructure_inventory", [])
+    if not devices:
+        exception_message = "No devices found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    device_found = False
+    for device in devices:
+        if device.get("id") == equipment_id:
+            device_found = True
+            
+            # Update contract information
+            from datetime import datetime, timedelta
+            current_date = datetime.now()
+            expiration_date = current_date + timedelta(days=365 if "12" in contract_duration else 180)
+            
+            device["contract_info"] = {
+                "type": contract_type,
+                "vendor": vendor,
+                "start_date": current_date.strftime("%Y-%m-%d"),
+                "expiration_date": expiration_date.strftime("%Y-%m-%d"),
+                "duration": contract_duration,
+                "status": "Active",
+                "renewal_date": current_date.strftime("%Y-%m-%d")
+            }
+            
+            # Update warranty status
+            device["warranty_status"] = "Active"
+            device["warranty_expiration"] = expiration_date.strftime("%Y-%m-%d")
+            
+            # Remove alerts if any
+            alerts = device.get("alerts", [])
+            #device["alerts"] = []
+            
+            # Add contract renewal confirmation alert
+            device["alerts"].append(f"Contract renewed: {contract_type} active until {expiration_date.strftime('%Y-%m-%d')}")
+            
+            activity.logger.info(f"Renewed {contract_type} for device {equipment_id} with {vendor}")
+            break
+
+    if not device_found:
+        exception_message = f"Device {equipment_id} not found in infrastructure inventory."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "infrastructure_inventory.json", "w") as file:
+        json.dump(data, file, indent=2)
+
+    # Add contract renewal note to health metrics
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "r") as file:
+        health_data = json.load(file)
+    metrics = health_data.get("health_metrics", [])
+    if not metrics:
+        exception_message = "No health metrics found."
+        activity.logger.error(exception_message)
+        raise ApplicationError(exception_message)
+    
+    # Find the equipment and add contract renewal note
+    equipment_found = False
+    for metric in metrics:
+        if metric.get("equipment_id") == equipment_id:
+            equipment_found = True
+            
+            # Add contract information to the metric
+            if "contract_notes" not in metric:
+                metric["contract_notes"] = []
+            
+            from datetime import datetime
+            current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+            
+            contract_note = {
+                "timestamp": current_time,
+                "type": "Contract Renewed",
+                "contract_type": contract_type,
+                "vendor": vendor,
+                "duration": contract_duration,
+                "status": "Active"
+            }
+            
+            # Add contract note
+            metric["contract_notes"].append(contract_note)
+            
+            # Keep only the last 3 contract notes
+            if len(metric["contract_notes"]) > 3:
+                metric["contract_notes"] = metric["contract_notes"][-3:]
+            
+            # Update contract status in the metric
+            metric["contract_status"] = "Active"
+            metric["warranty_status"] = "Active"
+            
+            activity.logger.info(f"Added contract renewal note for device {equipment_id}")
+            break
+    
+    if not equipment_found:
+        activity.logger.warning(f"Equipment {equipment_id} not found in health metrics")
+
+    with open(Path(__file__).resolve().parent.parent / "data" / "health_metrics.json", "w") as file:
+        json.dump(health_data, file, indent=2)
 
     return {"status": "success", "message": f"{contract_type} contract renewed for device {equipment_id}."}
